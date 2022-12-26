@@ -6,14 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameFrame extends JFrame{
+
     private final int WIDTH;
     private boolean isCheating = false;
     private final int HEIGHT;
     public final int CHESSBOARD_SIZE;
     private GameController gameController;
     private static JLabel statusLabel;
-    private static Chessboard chessboard;
-    private static GameFrame gameFrame;
 
     public GameFrame(int width, int height) {
         setTitle("2022 CS109 Project Demo"); //设置标题
@@ -31,6 +30,10 @@ public class GameFrame extends JFrame{
         addBackButton();
         addRestartButton();
         addCheatingModeButton();
+        addSaveGameButton();
+        addRedPointLabel();
+        addBlackPointLabel();
+        addRegretButton();
     }
 
     private void addChessboard() {
@@ -53,7 +56,7 @@ public class GameFrame extends JFrame{
     }
 
     private void addBackButton() {
-        JButton button = new JButton("返回上一层");
+        JButton button = new JButton("返回菜单");
         button.addActionListener((e) -> {
             StartGameFrame mainFrame = new StartGameFrame(720, 720);
             mainFrame.setVisible(true);
@@ -89,11 +92,7 @@ public class GameFrame extends JFrame{
     private void addRestartButton() {
         JButton button = new JButton("重新开始");
         button.addActionListener((e) -> {
-            int choice = JOptionPane.showConfirmDialog(this,"确定重开吗？","提示", JOptionPane.YES_NO_OPTION);
-            if(choice == 0){
-                chessboard.initAllChessOnBoard();
-                gameFrame.repaint();
-            }
+
         });
         button.setLocation(WIDTH * 3 / 5, HEIGHT /2);
         button.setSize(180, 60);
@@ -104,5 +103,49 @@ public class GameFrame extends JFrame{
     //todo: finish it
     private void cheatingMode() {
 
+    }
+
+    //todo: finish it
+    private void addSaveGameButton() {
+        JButton button = new JButton("存储游戏");
+        button.addActionListener((e) -> {
+
+        });
+        button.setLocation(WIDTH * 3 / 5, HEIGHT * 3 / 5);
+        button.setSize(180, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(button);
+    }
+
+    //todo:finish it
+    private void addRedPointLabel() {
+        JLabel redPointLabel = new JLabel();
+        redPointLabel.setText(String.format("红方得分: %d",0));
+        redPointLabel.setLocation(WIDTH * 3 / 5, HEIGHT / 5);
+        redPointLabel.setSize(200, 60);
+        redPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(redPointLabel);
+    }
+
+    //todo:finish it
+    private void addBlackPointLabel() {
+        JLabel blackPointLabel = new JLabel();
+        blackPointLabel.setText(String.format("黑方得分: %d",0));
+        blackPointLabel.setLocation(WIDTH * 3 / 5, HEIGHT * 3 / 20);
+        blackPointLabel.setSize(200, 60);
+        blackPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(blackPointLabel);
+    }
+
+    //todo:finish it
+    private void addRegretButton() {
+        JButton button = new JButton("悔棋");
+        button.addActionListener((e) -> {
+
+        });
+        button.setLocation(WIDTH * 3 / 5, HEIGHT * 2 / 5);
+        button.setSize(180, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(button);
     }
 }

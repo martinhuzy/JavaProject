@@ -50,14 +50,16 @@ public class ClickController {
 
     private boolean handleFirst(SquareComponent squareComponent) {
         if (!squareComponent.isReversal()) {
-            squareComponent.setReversal(true);
-            String filepath = "./resource/翻开.wav";
-            ReverseMusic reverseMusic = new ReverseMusic();
-            reverseMusic.playMusic(filepath);
-            System.out.printf("onClick to reverse a chess [%d,%d]\n", squareComponent.getChessboardPoint().getX(), squareComponent.getChessboardPoint().getY());
-            squareComponent.repaint();
-            chessboard.clickController.swapPlayer();
-            return false;
+            if (!(squareComponent instanceof EmptySlotComponent)) {
+                squareComponent.setReversal(true);
+                String filepath = "./resource/翻开.wav";
+                ReverseMusic reverseMusic = new ReverseMusic();
+                reverseMusic.playMusic(filepath);
+                System.out.printf("onClick to reverse a chess [%d,%d]\n", squareComponent.getChessboardPoint().getX(), squareComponent.getChessboardPoint().getY());
+                squareComponent.repaint();
+                chessboard.clickController.swapPlayer();
+                return false;
+            }
         }
         return squareComponent.getChessColor() == chessboard.getCurrentColor();
     }

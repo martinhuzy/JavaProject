@@ -27,6 +27,7 @@ public abstract class SquareComponent extends JComponent {
     protected static int spacingLength;
     protected static final Font CHESS_FONT = new Font("Rockwell", Font.BOLD, 36);
     protected int priority;
+    public int points;
 
     /**
      * chessboardPoint: 表示8*4棋盘中，当前棋子在棋格对应的位置，如(0, 0), (1, 0)等等

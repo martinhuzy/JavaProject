@@ -17,6 +17,8 @@ import java.util.List;
  * SquareComponent[][]: 4*8个方块格子组件
  */
 public class Chessboard extends JComponent {
+    int redPoint = 0;
+    int blackPoint = 0;
 
 
     private static final int ROW_SIZE = 8;
@@ -78,6 +80,13 @@ public class Chessboard extends JComponent {
     public void swapChessComponents(SquareComponent chess1, SquareComponent chess2) {
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
         if (!(chess2 instanceof EmptySlotComponent)) {
+            if (chess2.getChessColor() == ChessColor.BLACK) {
+                redPoint += chess2.points;
+                System.out.println(redPoint);
+            } else {
+                blackPoint += chess2.points;
+                System.out.println(blackPoint);
+            }
             String filepath = "./resource/吃.wav";
             CaptureMusic captureMusic = new CaptureMusic();
             captureMusic.playMusic(filepath);
@@ -93,6 +102,7 @@ public class Chessboard extends JComponent {
         //只重新绘制chess1 chess2，其他不变
         chess1.repaint();
         chess2.repaint();
+        checkWinner();
 
         String filepath = "./resource/移动.wav";
         MoveMusic moveMusic = new MoveMusic();
@@ -211,5 +221,13 @@ public class Chessboard extends JComponent {
      */
     public void loadGame(List<String> chessData) {
         chessData.forEach(System.out::println);
+    }
+
+    public void checkWinner() {
+        if (redPoint >= 60) {
+            JOptionPane.showMessageDialog(this, "Red wins!");
+        } else if (blackPoint >= 60) {
+            JOptionPane.showMessageDialog(this, "Black wins!");
+        }
     }
 }
