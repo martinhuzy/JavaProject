@@ -4,8 +4,8 @@ package controller;
 import chessComponent.SquareComponent;
 import chessComponent.EmptySlotComponent;
 import model.ChessColor;
-import view.ChessGameFrame;
 import view.Chessboard;
+import view.GameFrame;
 
 public class ClickController {
     private final Chessboard chessboard;
@@ -65,18 +65,18 @@ public class ClickController {
     private boolean handleSecond(SquareComponent squareComponent) {
 
         //没翻开或空棋子，进入if
-        if (!squareComponent.isReversal()) {
+        /**if (!squareComponent.isReversal()) {
             //没翻开且非空棋子不能走
             if (!(squareComponent instanceof EmptySlotComponent)) {
                 return false;
             }
-        }
-        return squareComponent.getChessColor() != chessboard.getCurrentColor() &&
+        }*/
+        return //squareComponent.getChessColor() != chessboard.getCurrentColor() &&
                 first.canMoveTo(chessboard.getChessComponents(), squareComponent.getChessboardPoint());
     }
 
     public void swapPlayer() {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
-        ChessGameFrame.getStatusLabel().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
+        GameFrame.getStatusLabel().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
     }
 }

@@ -6,9 +6,6 @@ import model.ChessboardPoint;
 
 import java.awt.*;
 
-/**
- * 表示黑红车
- */
 public class ChariotChessComponent extends ChessComponent {
 
     public ChariotChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
@@ -18,6 +15,8 @@ public class ChariotChessComponent extends ChessComponent {
         } else {
             name = "車";
         }
+        priority = 3;
+        points = 5;
     }
 
 }

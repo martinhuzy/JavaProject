@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import Controller.GameController;
+import controller.GameController;
 
 import javax.swing.*;
 import java.awt.*;

@@ -5,7 +5,8 @@ package model;
  * 其中，左上角是(0, 0)，左下角是(7, 0)，右上角是(0, 3)，右下角是(7, 3)
  */
 public class ChessboardPoint {
-    private int x, y;
+    private int x;
+    private int y;
 
     /**
      *

@@ -19,6 +19,7 @@ public abstract class SquareComponent extends JComponent {
     private static final Color squareColor = new Color(250, 220, 190);
     protected static int spacingLength;
     protected static final Font CHESS_FONT = new Font("Rockwell", Font.BOLD, 36);
+    protected int priority;
 
     /**
      * chessboardPoint: 表示8*4棋盘中，当前棋子在棋格对应的位置，如(0, 0), (1, 0)等等
@@ -114,13 +115,20 @@ public abstract class SquareComponent extends JComponent {
      * <br>
      * 这个方法主要是检查移动的合法性，如果合法就返回true，反之是false。
      */
-    //todo: Override this method for Cannon
     public boolean canMoveTo(SquareComponent[][] chessboard, ChessboardPoint destination) {
         SquareComponent destinationChess = chessboard[destination.getX()][destination.getY()];
-        return destinationChess.isReversal|| destinationChess instanceof EmptySlotComponent;
-        //todo: complete this method
+        if (!destinationChess.isReversal()) {
+            //没翻开且非空棋子不能走
+            if (!(destinationChess instanceof EmptySlotComponent)) {
+                return false;
+            }
+        }
+        return (Math.abs(this.getChessboardPoint().getX() - destination.getX()) + Math.abs(this.getChessboardPoint().getY() - destination.getY()) == 1) && ((destinationChess.isReversal && this.getPriority() >= destinationChess.getPriority()) || destinationChess instanceof EmptySlotComponent) && destinationChess.getChessColor() != this.getChessColor();
     }
 
+    int getPriority() {
+        return priority;
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
