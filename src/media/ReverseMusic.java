@@ -1,9 +1,11 @@
 package media;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.File;
 
-public class BGM {
+public class ReverseMusic {
     public void playMusic(String musicFilepath) {
         try {
             File file = new File(musicFilepath);
@@ -12,7 +14,7 @@ public class BGM {
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                clip.loop(0);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

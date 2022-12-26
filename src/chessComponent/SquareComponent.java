@@ -3,6 +3,7 @@ package chessComponent;
 import controller.ClickController;
 import model.ChessColor;
 import model.ChessboardPoint;
+import view.Chessboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,13 @@ import java.awt.event.MouseEvent;
  */
 public abstract class SquareComponent extends JComponent {
 
-    private static final Color squareColor = new Color(250, 220, 190);
+    private static Color squareColor = new Color(250, 220, 190);
+
+//    public void canMoveToSquare() {
+//        if (this.canMoveTo(getChessComponents(),)) {
+//            squareColor = Color.RED;
+//        }
+//    }
     protected static int spacingLength;
     protected static final Font CHESS_FONT = new Font("Rockwell", Font.BOLD, 36);
     protected int priority;
@@ -78,6 +85,7 @@ public abstract class SquareComponent extends JComponent {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+        //this.canMoveToSquare();
     }
 
     /**

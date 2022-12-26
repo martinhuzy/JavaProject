@@ -40,8 +40,6 @@ public class CannonChessComponent extends ChessComponent {
                 return false;
             }
         }
-        System.out.println(destinationChess.getChessColor());
-        System.out.println(this.getChessColor());
         return sum == 3 && !(destinationChess instanceof EmptySlotComponent);
     }
 }

@@ -2,6 +2,9 @@ package view;
 
 
 import chessComponent.*;
+import media.BackGroundMusic;
+import media.CaptureMusic;
+import media.MoveMusic;
 import model.*;
 import controller.ClickController;
 
@@ -76,6 +79,9 @@ public class Chessboard extends JComponent {
     public void swapChessComponents(SquareComponent chess1, SquareComponent chess2) {
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
         if (!(chess2 instanceof EmptySlotComponent)) {
+            String filepath = "./resource/吃.wav";
+            CaptureMusic captureMusic = new CaptureMusic();
+            captureMusic.playMusic(filepath);
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));
         }
@@ -88,6 +94,10 @@ public class Chessboard extends JComponent {
         //只重新绘制chess1 chess2，其他不变
         chess1.repaint();
         chess2.repaint();
+
+        String filepath = "./resource/移动.wav";
+        MoveMusic moveMusic = new MoveMusic();
+        moveMusic.playMusic(filepath);
     }
 
     public static class ChessType {
