@@ -2,7 +2,6 @@ package view;
 
 
 import chessComponent.*;
-import media.BackGroundMusic;
 import media.CaptureMusic;
 import media.MoveMusic;
 import model.*;
@@ -144,7 +143,7 @@ public class Chessboard extends JComponent {
     }
 
 
-    private void initAllChessOnBoard() {
+    public void initAllChessOnBoard() {
         initialChess = randomChess();
         for (int i = 0; i < squareComponents.length; i++) {
             for (int j = 0; j < squareComponents[i].length; j++) {
