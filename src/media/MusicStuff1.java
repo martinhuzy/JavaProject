@@ -1,11 +1,9 @@
 package media;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 import java.io.File;
 
-public class ReverseMusic {
+public class MusicStuff1 {
     public void playMusic(String musicFilepath) {
         try {
             File file = new File(musicFilepath);
@@ -14,7 +12,7 @@ public class ReverseMusic {
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 clip.start();
-                clip.loop(0);
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

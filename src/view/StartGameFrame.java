@@ -28,6 +28,18 @@ public class StartGameFrame extends JFrame {
         addPvEButton();
         addLoadButton();
         addBackButton();
+        addBackGround();
+    }
+
+
+    private void addBackGround() {
+        ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
+        JLabel picture = new JLabel(scaledImage);
+        picture.setSize(720,660);
+        JPanel pan = (JPanel)this.getContentPane();
+        pan.setOpaque(false);
+        pan.setLayout(null);
+        add(picture,JLayeredPane.DEFAULT_LAYER);
     }
 
     private void addLabelButton() {
@@ -35,6 +47,7 @@ public class StartGameFrame extends JFrame {
         statusLabel.setLocation(WIDTH / 10, HEIGHT / 10);
         statusLabel.setSize(600, 60);
         statusLabel.setFont(new Font("Rockwell", Font.BOLD, 50));
+        statusLabel.setForeground(Color.RED);
         add(statusLabel);
     }
     private void addPvPButton() {
@@ -50,16 +63,18 @@ public class StartGameFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 170);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\4.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
     private void addPvEButton() {
         JButton button = new JButton("人机对战");
         button.addActionListener((e) -> {
-            Object[] options ={"入门","简单","普通","困难"};
+            Object[] options ={"简单","普通","困难"};
             String s = (String) JOptionPane.showInputDialog(null,"请选择AI难度:", "难度选择" , JOptionPane.PLAIN_MESSAGE, new ImageIcon(), options,null);
-            if (Objects.equals(s, "入门")) {
-                JOptionPane.showMessageDialog(this, "入门模式敬请期待！");
-            } else if (Objects.equals(s, "简单")) {
+            if (Objects.equals(s, "简单")) {
                 JOptionPane.showMessageDialog(this, "简单模式敬请期待！");
             } else if (Objects.equals(s, "普通")){
                 JOptionPane.showMessageDialog(this, "普通模式敬请期待！");
@@ -70,6 +85,10 @@ public class StartGameFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 270);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\6.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 
@@ -79,6 +98,10 @@ public class StartGameFrame extends JFrame {
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         //button.setBackground(Color.LIGHT_GRAY);
+        ImageIcon image = new ImageIcon(".\\resource\\8.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
 
         button.addActionListener(e -> {
@@ -97,6 +120,10 @@ public class StartGameFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 470);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\9.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 }

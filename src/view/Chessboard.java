@@ -2,8 +2,7 @@ package view;
 
 
 import chessComponent.*;
-import media.CaptureMusic;
-import media.MoveMusic;
+import media.MusicStuff2;
 import model.*;
 import controller.ClickController;
 
@@ -88,7 +87,7 @@ public class Chessboard extends JComponent {
                 System.out.println(blackPoint);
             }
             String filepath = "./resource/吃.wav";
-            CaptureMusic captureMusic = new CaptureMusic();
+            MusicStuff2 captureMusic = new MusicStuff2();
             captureMusic.playMusic(filepath);
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));
@@ -105,7 +104,7 @@ public class Chessboard extends JComponent {
         checkWinner();
 
         String filepath = "./resource/移动.wav";
-        MoveMusic moveMusic = new MoveMusic();
+        MusicStuff2 moveMusic = new MusicStuff2();
         moveMusic.playMusic(filepath);
     }
 

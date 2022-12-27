@@ -3,8 +3,7 @@ package controller;
 
 import chessComponent.SquareComponent;
 import chessComponent.EmptySlotComponent;
-import media.MoveMusic;
-import media.ReverseMusic;
+import media.MusicStuff2;
 import model.ChessColor;
 import view.Chessboard;
 import view.GameFrame;
@@ -53,7 +52,7 @@ public class ClickController {
             if (!(squareComponent instanceof EmptySlotComponent)) {
                 squareComponent.setReversal(true);
                 String filepath = "./resource/翻开.wav";
-                ReverseMusic reverseMusic = new ReverseMusic();
+                    MusicStuff2 reverseMusic = new MusicStuff2();
                 reverseMusic.playMusic(filepath);
                 System.out.printf("onClick to reverse a chess [%d,%d]\n", squareComponent.getChessboardPoint().getX(), squareComponent.getChessboardPoint().getY());
                 squareComponent.repaint();

@@ -4,6 +4,7 @@ import controller.ClickController;
 import model.ChessColor;
 import model.ChessboardPoint;
 import view.Chessboard;
+import view.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -88,6 +89,7 @@ public abstract class SquareComponent extends JComponent {
         this.selected = selected;
         //this.canMoveToSquare();
     }
+
 
     /**
      * @param another 主要用于和另外一个棋子交换位置

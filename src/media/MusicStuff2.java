@@ -5,7 +5,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
-public class MoveMusic {
+public class MusicStuff2 {
     public void playMusic(String musicFilepath) {
         try {
             File file = new File(musicFilepath);
