@@ -57,7 +57,7 @@ public class PvPFrame extends JFrame {
         button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 30);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\9.png");
+        ImageIcon image = new ImageIcon(".\\resource\\11.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
         button.setIcon(image);

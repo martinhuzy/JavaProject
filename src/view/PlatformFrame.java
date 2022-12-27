@@ -50,7 +50,11 @@ public class PlatformFrame extends JFrame {
     }
     private void addRegisterButton() {
         JButton button = new JButton("修改本地账户");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "敬请期待！"));
+        button.addActionListener((e) -> SwingUtilities.invokeLater(() -> {
+            ChangeAccountFrame mainFrame = new ChangeAccountFrame(720, 720);
+            mainFrame.setVisible(true);
+            setVisible(false);
+        }));
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 200);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
