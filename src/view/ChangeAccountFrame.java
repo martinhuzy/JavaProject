@@ -1,12 +1,17 @@
 package view;
 
+import accounts.Account;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChangeAccountFrame extends JFrame{
     private int WIDTH;
     private int HEIGHT;
     private static JLabel statusLabel;
+    private List<String> accounts = new ArrayList<>();
     public ChangeAccountFrame(int WIDTH,int HEIGHT) {
         setTitle("DarkChess");
         this.WIDTH = WIDTH;
@@ -36,7 +41,10 @@ public class ChangeAccountFrame extends JFrame{
     private void addAddAccountButton() {
         JButton button = new JButton("添加账户");
         button.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "敬请期待！");
+            String newAccount = JOptionPane.showInputDialog(this,"账户名","请输入想要添加的账号", JOptionPane.INFORMATION_MESSAGE);
+            if (!accounts.contains(newAccount)) {
+                accounts.add(newAccount);
+            }
         });
         button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 130);
         button.setSize(180, 60);
