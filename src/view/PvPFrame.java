@@ -7,6 +7,7 @@ public class PvPFrame extends JFrame {
     private int WIDTH;
     private int HEIGHT;
     private static JLabel statusLabel;
+    public GameFrame mainFrame;
     public PvPFrame(int WIDTH, int HEIGHT) {
         setTitle("DarkChess");
         this.WIDTH = WIDTH;
@@ -37,7 +38,7 @@ public class PvPFrame extends JFrame {
         JButton button = new JButton("本地对战");
         button.addActionListener((e) -> {
             SwingUtilities.invokeLater(() -> {
-                GameFrame mainFrame = new GameFrame(720, 720);
+                mainFrame = new GameFrame(720, 720);
                 mainFrame.setVisible(true);
                 setVisible(false);
             });

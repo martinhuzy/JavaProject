@@ -13,6 +13,7 @@ public class GameFrame extends JFrame{
     public final int CHESSBOARD_SIZE;
     private GameController gameController;
     private static JLabel statusLabel;
+    public Chessboard chessboard;
 
     public GameFrame(int width, int height) {
         setTitle("2022 CS109 Project Demo"); //设置标题
@@ -183,7 +184,7 @@ public class GameFrame extends JFrame{
     }
 
     private void addChessboard() {
-        Chessboard chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
+        chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
         gameController = new GameController(chessboard);
         chessboard.setLocation(105, 35);
         add(chessboard);

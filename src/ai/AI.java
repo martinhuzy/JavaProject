@@ -2,7 +2,7 @@ package ai;
 
 import chessComponent.SquareComponent;
 
-public abstract class AI {
+public abstract class AI extends Thread{
     protected SquareComponent squareComponent;
 
     public AI(SquareComponent squareComponent) {

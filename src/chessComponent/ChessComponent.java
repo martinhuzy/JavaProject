@@ -4,6 +4,7 @@ import controller.ClickController;
 import model.ChessColor;
 import model.ChessboardPoint;
 import view.GameFrame;
+import view.GameFrameHandle;
 
 import java.awt.*;
 
@@ -12,7 +13,6 @@ import java.awt.*;
  */
 public class ChessComponent extends SquareComponent{
     protected String name;// 棋子名字：例如 兵，卒，士等
-    private GameFrame gameFrame;
 
 
     protected ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
@@ -41,7 +41,7 @@ public class ChessComponent extends SquareComponent{
                 g2.drawOval(spacingLength, spacingLength, getWidth() - 2 * spacingLength, getHeight() - 2 * spacingLength);
             }
         }
-//        if (gameFrame.isCheating) {
+//        if (GameFrameHandle.gameFrame.isCheating) {
 //            if (!isReversal) {
 //                g.setColor(Color.YELLOW);
 //                g.fillOval(spacingLength, spacingLength, this.getWidth() - 2 * spacingLength, this.getHeight() - 2 * spacingLength);
@@ -51,6 +51,7 @@ public class ChessComponent extends SquareComponent{
 //                g.setColor(this.getChessColor().getColor());
 //                g.setFont(CHESS_FONT);
 //                g.drawString(this.name, this.getWidth() / 4, this.getHeight() * 2 / 3);
+//                this.repaint();
 //            }
 //        }
     }

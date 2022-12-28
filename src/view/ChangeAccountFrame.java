@@ -1,7 +1,5 @@
 package view;
 
-import accounts.Account;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;

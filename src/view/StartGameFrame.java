@@ -11,6 +11,7 @@ public class StartGameFrame extends JFrame {
     private int HEIGHT;
     private static JLabel statusLabel;
     private GameController gameController;
+    public GameFrame gameFrame;
 
     public StartGameFrame(int WIDTH,int HEIGHT) {
         setTitle("DarkChess");

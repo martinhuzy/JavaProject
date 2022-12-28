@@ -72,11 +72,11 @@ public class ClickController {
 
         //没翻开或空棋子，进入if
         /**if (!squareComponent.isReversal()) {
-            //没翻开且非空棋子不能走
-            if (!(squareComponent instanceof EmptySlotComponent)) {
-                return false;
-            }
-        }*/
+         //没翻开且非空棋子不能走
+         if (!(squareComponent instanceof EmptySlotComponent)) {
+         return false;
+         }
+         }*/
         return //squareComponent.getChessColor() != chessboard.getCurrentColor() &&
                 first.canMoveTo(chessboard.getChessComponents(), squareComponent.getChessboardPoint());
     }

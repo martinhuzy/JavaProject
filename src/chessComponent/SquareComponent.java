@@ -5,6 +5,7 @@ import model.ChessColor;
 import model.ChessboardPoint;
 import view.Chessboard;
 import view.GameFrame;
+import static view.GameFrameHandle.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,7 +88,7 @@ public abstract class SquareComponent extends JComponent {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
-        //this.canMoveToSquare();
+        //if (this.canMoveTo(gameFrame.chessboard.getChessComponents(),))
     }
 
 
