@@ -237,7 +237,12 @@ public class GameFrame extends JFrame{
     private void addRestartButton() {
         JButton button = new JButton("重新开始");
         button.addActionListener((e) -> {
-
+            setVisible(false);
+            SwingUtilities.invokeLater(() -> {
+                GameFrame mainFrame = new GameFrame(720, 720);
+                mainFrame.setVisible(true);
+                setVisible(false);
+            });
         });
         button.setLocation(500, HEIGHT /2);
         button.setSize(180, 60);
