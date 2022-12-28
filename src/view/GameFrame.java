@@ -303,7 +303,6 @@ public class GameFrame extends JFrame{
 //        add(label);
 //
 //    }
-    //todo: finish it
     private void addRestartButton() {
         JButton button = new JButton("重新开始");
         button.addActionListener((e) -> {
