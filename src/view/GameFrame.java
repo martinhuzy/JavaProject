@@ -262,6 +262,8 @@ public class GameFrame extends JFrame{
     private void addBackButton() {
         JButton button = new JButton("返回菜单");
         button.addActionListener((e) -> {
+            GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
+            GameFrameHandle.gameFrame.setVisible(false);
             StartGameFrame mainFrame = new StartGameFrame(720, 720);
             mainFrame.setVisible(true);
             setVisible(false);
