@@ -224,9 +224,9 @@ public class Chessboard extends JComponent {
 
     public void checkWinner() {
         if (redPoint >= 60) {
-            JOptionPane.showMessageDialog(this, "Red wins!");
+            JOptionPane.showMessageDialog(this, "红方胜!");
         } else if (blackPoint >= 60) {
-            JOptionPane.showMessageDialog(this, "Black wins!");
+            JOptionPane.showMessageDialog(this, "黑方胜!");
         }
     }
 }

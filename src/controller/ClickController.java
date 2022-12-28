@@ -83,6 +83,7 @@ public class ClickController {
 
     public void swapPlayer() {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
-        GameFrame.getStatusLabel().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
+        GameFrame.getStatusLabel().setForeground((chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.BLACK : ChessColor.RED).getColor());
+        GameFrame.getStatusLabel().setText(chessboard.getCurrentColor() == ChessColor.BLACK ?String.format("轮到黑方"): String.format("轮到红方") );
     }
 }

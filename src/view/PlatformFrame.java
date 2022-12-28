@@ -25,12 +25,23 @@ public class PlatformFrame extends JFrame {
         addRankButton();
         addSettingsButton();
         addExitButton();
+        addBackGround();
+    }
+    private void addBackGround() {
+        ImageIcon scaledImage=new ImageIcon(".\\resource\\12.png");
+        JLabel picture = new JLabel(scaledImage);
+        picture.setSize(720,660);
+        JPanel pan = (JPanel)this.getContentPane();
+        pan.setOpaque(false);
+        pan.setLayout(null);
+        add(picture,JLayeredPane.DEFAULT_LAYER);
     }
     private void addLabelButton() {
         statusLabel = new JLabel("中国象棋暗棋");
-        statusLabel.setLocation(WIDTH / 10, HEIGHT / 10);
-        statusLabel.setSize(600, 60);
-        statusLabel.setFont(new Font("Rockwell", Font.BOLD, 50));
+        statusLabel.setLocation(WIDTH / 10, 40);
+        statusLabel.setSize(600, 80);
+        statusLabel.setFont(new Font("楷体", Font.BOLD, 70));
+        statusLabel.setForeground(Color.yellow);
         add(statusLabel);
     }
 

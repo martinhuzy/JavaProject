@@ -58,6 +58,7 @@ public abstract class SquareComponent extends JComponent {
         this.isReversal = false;
     }
 
+
     public boolean isReversal() {
         return isReversal;
     }
