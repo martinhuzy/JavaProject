@@ -27,7 +27,7 @@ public class ChessComponent extends SquareComponent{
        //绘制棋子边框
         g.setColor(Color.DARK_GRAY);
         g.drawOval(spacingLength, spacingLength, getWidth() - 2 * spacingLength, getHeight() - 2 * spacingLength);
-        if (isReversal) {
+        if (isReversal || GameFrameHandle.gameFrame.isCheating) {
             //绘制棋子文字
             g.setColor(this.getChessColor().getColor());
             g.setFont(CHESS_FONT);

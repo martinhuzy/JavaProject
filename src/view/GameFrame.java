@@ -276,6 +276,7 @@ public class GameFrame extends JFrame{
         JButton button = new JButton();
         button.setText("作弊模式：关");
         button.addActionListener((e) -> {
+            System.out.println(GameFrameHandle.gameFrame.isCheating);
             if (!isCheating) {
                 isCheating = true;
                 button.setText("作弊模式：开");
@@ -331,7 +332,10 @@ public class GameFrame extends JFrame{
     //todo:finish it
     private void addRedPointLabel() {
         JLabel redPointLabel = new JLabel();
-        redPointLabel.setText(String.format("红方得分: %d",0));
+        redPointLabel.setText(String.format("红方得分: %d", 0));
+        if (GameFrameHandle.gameFrame != null) {
+            redPointLabel.setText(String.format("红方得分: %d", GameFrameHandle.gameFrame.chessboard.redPoint));
+        }
         redPointLabel.setLocation(500, HEIGHT / 5);
         redPointLabel.setSize(200, 60);
         redPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -342,7 +346,10 @@ public class GameFrame extends JFrame{
     //todo:finish it
     private void addBlackPointLabel() {
         JLabel blackPointLabel = new JLabel();
-        blackPointLabel.setText(String.format("黑方得分: %d",0));
+        blackPointLabel.setText(String.format("黑方得分: %d", 0));
+        if (GameFrameHandle.gameFrame != null) {
+            blackPointLabel.setText(String.format("黑方得分: %d", GameFrameHandle.gameFrame.chessboard.blackPoint));
+        }
         blackPointLabel.setLocation(500, HEIGHT * 3 / 20);
         blackPointLabel.setSize(200, 60);
         blackPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -361,4 +368,5 @@ public class GameFrame extends JFrame{
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(button);
     }
+
 }

@@ -1,4 +1,5 @@
 import media.MusicStuff1;
+import view.GameFrameHandle;
 import view.PlatformFrame;
 
 import javax.swing.*;

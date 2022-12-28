@@ -1,5 +1,7 @@
 package view;
 
+import accounts.Account;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,15 +31,13 @@ public class ChangeAccountFrame extends JFrame{
     }
 
     private void addBackGround() {
-        ImageIcon icon=new ImageIcon(".\\resource\\12.png");
-        JLabel label = new JLabel(icon);
-        label.setBounds(-10,0,720,720);
-        icon.setImage(icon.getImage().getScaledInstance(750,750,Image.SCALE_SMOOTH));
+        ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
+        JLabel picture = new JLabel(scaledImage);
+        picture.setSize(720,660);
         JPanel pan = (JPanel)this.getContentPane();
         pan.setOpaque(false);
         pan.setLayout(null);
-        this.getLayeredPane().add(label,Integer.valueOf(Integer.MIN_VALUE));
-        this.setVisible(true);
+        add(picture,JLayeredPane.DEFAULT_LAYER);
     }
     private void addAddAccountButton() {
         JButton button = new JButton("添加账户");
@@ -100,8 +100,3 @@ public class ChangeAccountFrame extends JFrame{
         add(button);
     }
 }
-        //ImageIcon image = new ImageIcon();
-        //Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
-        //image = new ImageIcon(temp1);
-        //button.setIcon(image);
-
