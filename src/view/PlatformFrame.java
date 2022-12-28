@@ -28,9 +28,10 @@ public class PlatformFrame extends JFrame {
         addBackGround();
     }
     private void addBackGround() {
-        ImageIcon scaledImage=new ImageIcon(".\\resource\\12.png");
+        ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
         JLabel picture = new JLabel(scaledImage);
         picture.setSize(720,660);
+        picture.setBounds(0,-30,720,720);
         JPanel pan = (JPanel)this.getContentPane();
         pan.setOpaque(false);
         pan.setLayout(null);
@@ -38,10 +39,10 @@ public class PlatformFrame extends JFrame {
     }
     private void addLabelButton() {
         statusLabel = new JLabel("中国象棋暗棋");
-        statusLabel.setLocation(WIDTH / 10, 40);
-        statusLabel.setSize(600, 80);
-        statusLabel.setFont(new Font("楷体", Font.BOLD, 70));
-        statusLabel.setForeground(Color.yellow);
+        statusLabel.setLocation(WIDTH / 10, 80);
+        statusLabel.setSize(600, 85);
+        statusLabel.setFont(new Font("楷体", Font.BOLD, 50));
+        statusLabel.setForeground(Color.YELLOW);
         add(statusLabel);
     }
 
@@ -57,6 +58,10 @@ public class PlatformFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 120);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\27.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
     private void addRegisterButton() {
@@ -69,6 +74,10 @@ public class PlatformFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 200);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\28.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
     private void addRankButton() {
@@ -77,6 +86,10 @@ public class PlatformFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 280);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\29.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
     private void addSettingsButton() {
@@ -85,6 +98,10 @@ public class PlatformFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 360);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\30.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
     private void addExitButton() {
@@ -99,6 +116,10 @@ public class PlatformFrame extends JFrame {
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 440);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\31.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 }
