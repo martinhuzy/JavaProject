@@ -21,11 +21,6 @@ public abstract class SquareComponent extends JComponent {
 
     private static Color squareColor = new Color(250, 220, 190);
 
-//    public void canMoveToSquare() {
-//        if (this.canMoveTo(getChessComponents(),)) {
-//            squareColor = Color.RED;
-//        }
-//    }
     protected static int spacingLength;
     protected static final Font CHESS_FONT = new Font("Rockwell", Font.BOLD, 36);
     protected int priority;
@@ -38,7 +33,7 @@ public abstract class SquareComponent extends JComponent {
      * selected: 表示这个棋子是否被选中
      */
     private ChessboardPoint chessboardPoint;
-    protected final ChessColor chessColor;
+    public ChessColor chessColor;
     protected boolean isReversal;
     private boolean selected;
     public boolean perspective = false;
@@ -90,7 +85,6 @@ public abstract class SquareComponent extends JComponent {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
-        //if (this.canMoveTo(gameFrame.chessboard.getChessComponents(),))
     }
 
 

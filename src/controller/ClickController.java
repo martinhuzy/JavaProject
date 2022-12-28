@@ -8,6 +8,8 @@ import model.ChessColor;
 import view.Chessboard;
 import view.GameFrame;
 
+import static view.GameFrameHandle.gameFrame;
+
 public class ClickController {
     private final Chessboard chessboard;
     private SquareComponent first;
@@ -80,9 +82,9 @@ public class ClickController {
         return //squareComponent.getChessColor() != chessboard.getCurrentColor() &&
                 first.canMoveTo(chessboard.getChessComponents(), squareComponent.getChessboardPoint());
     }
-    public boolean canChangeCursor(SquareComponent squareComponent) {
-        return first != null && handleSecond(squareComponent);
-    }
+//    public boolean canChangeCursor(SquareComponent squareComponent) {
+//        return first != null && handleSecond(squareComponent);
+//    }
 
     public void swapPlayer() {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);

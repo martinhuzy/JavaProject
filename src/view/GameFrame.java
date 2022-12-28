@@ -20,6 +20,8 @@ public class GameFrame extends JFrame{
     private GameController gameController;
     private static JLabel statusLabel;
     public Chessboard chessboard;
+    public JLabel redPointLabel;
+    public JLabel blackPointLabel;
 
     public GameFrame(int width, int height) {
         setTitle("2022 CS109 Project Demo"); //设置标题
@@ -334,11 +336,12 @@ public class GameFrame extends JFrame{
 
     //todo:finish it
     private void addRedPointLabel() {
-        JLabel redPointLabel = new JLabel();
-        redPointLabel.setText(String.format("红方得分: %d", 0));
+        redPointLabel = new JLabel();
+        int p = 0;
         if (GameFrameHandle.gameFrame != null) {
-            redPointLabel.setText(String.format("红方得分: %d", GameFrameHandle.gameFrame.chessboard.redPoint));
+            p = GameFrameHandle.gameFrame.chessboard.redPoint;
         }
+        redPointLabel.setText(String.format("红方得分: %d", p));
         redPointLabel.setLocation(500, HEIGHT / 5);
         redPointLabel.setSize(200, 60);
         redPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -348,7 +351,7 @@ public class GameFrame extends JFrame{
 
     //todo:finish it
     private void addBlackPointLabel() {
-        JLabel blackPointLabel = new JLabel();
+        blackPointLabel = new JLabel();
         blackPointLabel.setText(String.format("黑方得分: %d", 0));
         if (GameFrameHandle.gameFrame != null) {
             blackPointLabel.setText(String.format("黑方得分: %d", GameFrameHandle.gameFrame.chessboard.blackPoint));

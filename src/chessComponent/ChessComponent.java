@@ -22,7 +22,11 @@ public class ChessComponent extends SquareComponent{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //绘制棋子填充色
-        g.setColor(Color.ORANGE);
+        if (!isReversal && GameFrameHandle.gameFrame.isCheating) {
+            g.setColor(Color.YELLOW);
+        } else {
+            g.setColor(Color.ORANGE);
+        }
         g.fillOval(spacingLength, spacingLength, this.getWidth() - 2 * spacingLength, this.getHeight() - 2 * spacingLength);
        //绘制棋子边框
         g.setColor(Color.DARK_GRAY);
