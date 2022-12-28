@@ -1,8 +1,11 @@
 package ai;
 
 import chessComponent.SquareComponent;
+import controller.ClickController;
+import static view.GameFrameHandle.*;
 
-public class DefaultAI extends AI{
+
+public class DefaultAI extends AI {
     public DefaultAI(SquareComponent squareComponent) {
         super(squareComponent);
     }
@@ -29,5 +32,4 @@ public class DefaultAI extends AI{
     public void playChessHard() {
 
     }
-
 }

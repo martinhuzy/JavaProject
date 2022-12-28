@@ -52,7 +52,7 @@ public class ClickController {
             if (!(squareComponent instanceof EmptySlotComponent)) {
                 squareComponent.setReversal(true);
                 String filepath = "./resource/翻开.wav";
-                MusicStuff2 reverseMusic = new MusicStuff2();
+                    MusicStuff2 reverseMusic = new MusicStuff2();
                 reverseMusic.playMusic(filepath);
                 System.out.printf("onClick to reverse a chess [%d,%d]\n", squareComponent.getChessboardPoint().getX(), squareComponent.getChessboardPoint().getY());
                 squareComponent.repaint();
@@ -83,7 +83,6 @@ public class ClickController {
 
     public void swapPlayer() {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);
-        GameFrame.getStatusLabel().setText(String.format("轮到%s", chessboard.getCurrentColor() == ChessColor.BLACK ?"黑方":"红方"));
-        GameFrame.getStatusLabel().setForeground((chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.BLACK : ChessColor.RED).getColor());
+        GameFrame.getStatusLabel().setText(String.format("%s's TURN", chessboard.getCurrentColor().getName()));
     }
 }

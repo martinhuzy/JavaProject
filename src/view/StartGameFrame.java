@@ -11,6 +11,7 @@ public class StartGameFrame extends JFrame {
     private int HEIGHT;
     private static JLabel statusLabel;
     private GameController gameController;
+    public GameFrame gameFrame;
 
     public StartGameFrame(int WIDTH,int HEIGHT) {
         setTitle("DarkChess");
@@ -72,11 +73,9 @@ public class StartGameFrame extends JFrame {
     private void addPvEButton() {
         JButton button = new JButton("人机对战");
         button.addActionListener((e) -> {
-            Object[] options ={"入门","简单","普通","困难"};
+            Object[] options ={"简单","普通","困难"};
             String s = (String) JOptionPane.showInputDialog(null,"请选择AI难度:", "难度选择" , JOptionPane.PLAIN_MESSAGE, new ImageIcon(), options,null);
-            if (Objects.equals(s, "入门")) {
-                JOptionPane.showMessageDialog(this, "入门模式敬请期待！");
-            } else if (Objects.equals(s, "简单")) {
+            if (Objects.equals(s, "简单")) {
                 JOptionPane.showMessageDialog(this, "简单模式敬请期待！");
             } else if (Objects.equals(s, "普通")){
                 JOptionPane.showMessageDialog(this, "普通模式敬请期待！");

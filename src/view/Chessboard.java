@@ -16,24 +16,8 @@ import java.util.List;
  * SquareComponent[][]: 4*8个方块格子组件
  */
 public class Chessboard extends JComponent {
-    public int getRedPoint() {
-        return redPoint;
-    }
-
-    public void setRedPoint(int redPoint) {
-        this.redPoint = redPoint;
-    }
-
-    public int getBlackPoint() {
-        return blackPoint;
-    }
-
-    public void setBlackPoint(int blackPoint) {
-        this.blackPoint = blackPoint;
-    }
-
-    public int redPoint = 0;
-    public int blackPoint = 0;
+    int redPoint = 0;
+    int blackPoint = 0;
 
 
     private static final int ROW_SIZE = 8;
@@ -97,12 +81,10 @@ public class Chessboard extends JComponent {
         if (!(chess2 instanceof EmptySlotComponent)) {
             if (chess2.getChessColor() == ChessColor.BLACK) {
                 redPoint += chess2.points;
-                System.out.printf("redPoint: %d",redPoint);
-                System.out.println("");
+                System.out.println(redPoint);
             } else {
                 blackPoint += chess2.points;
-                System.out.printf("blackPoint: %d",blackPoint);
-                System.out.println("");
+                System.out.println(blackPoint);
             }
             String filepath = "./resource/吃.wav";
             MusicStuff2 captureMusic = new MusicStuff2();
@@ -247,5 +229,4 @@ public class Chessboard extends JComponent {
             JOptionPane.showMessageDialog(this, "Black wins!");
         }
     }
-
 }

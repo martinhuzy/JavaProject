@@ -1,6 +1,5 @@
 package view;
 
-import chessComponent.SquareComponent;
 import controller.GameController;
 
 import javax.swing.*;
@@ -9,11 +8,12 @@ import java.awt.*;
 public class GameFrame extends JFrame{
 
     private final int WIDTH;
-    private boolean isCheating = false;
+    public boolean isCheating = false;
     private final int HEIGHT;
     public final int CHESSBOARD_SIZE;
     private GameController gameController;
     private static JLabel statusLabel;
+    public Chessboard chessboard;
 
     public GameFrame(int width, int height) {
         setTitle("2022 CS109 Project Demo"); //设置标题
@@ -35,17 +35,6 @@ public class GameFrame extends JFrame{
         addRedPointLabel();
         addBlackPointLabel();
         addRegretButton();
-        addBackGround();
-    }
-    private void addBackGround() {
-        ImageIcon scaledImage=new ImageIcon(".\\resource\\22.png");
-        scaledImage.setImage(scaledImage.getImage().getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_AREA_AVERAGING));
-        JLabel picture = new JLabel(scaledImage);
-        picture.setSize(720,660);
-        JPanel pan = (JPanel)this.getContentPane();
-        pan.setOpaque(false);
-        pan.setLayout(null);
-        add(picture,JLayeredPane.DEFAULT_LAYER);
     }
 
     public void paint(Graphics g){
@@ -194,20 +183,18 @@ public class GameFrame extends JFrame{
         g.drawOval(473, 595, 20, 20);
     }
 
-
     private void addChessboard() {
-        Chessboard chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
+        chessboard = new Chessboard(CHESSBOARD_SIZE / 2, CHESSBOARD_SIZE);
         gameController = new GameController(chessboard);
         chessboard.setLocation(105, 35);
         add(chessboard);
     }
 
     private void addLabel() {
-        statusLabel = new JLabel("决定先手");
+        statusLabel = new JLabel("BLACK's TURN");
         statusLabel.setLocation(500, HEIGHT / 10);
         statusLabel.setSize(200, 60);
-        statusLabel.setFont(new Font("楷体", Font.BOLD, 40));
-        statusLabel.setForeground(Color.WHITE);
+        statusLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(statusLabel);
     }
 
@@ -222,13 +209,9 @@ public class GameFrame extends JFrame{
             mainFrame.setVisible(true);
             setVisible(false);
         });
-        button.setLocation(550, 504);
-        button.setSize(100, 40);
+        button.setLocation(500, HEIGHT * 7/ 10);
+        button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\21.png");
-        Image temp1 = image.getImage().getScaledInstance(260,200,image.getImage().SCALE_SMOOTH);
-        image = new ImageIcon(temp1);
-        button.setIcon(image);
         add(button);
     }
 
@@ -238,7 +221,6 @@ public class GameFrame extends JFrame{
         button.addActionListener((e) -> {
             if (!isCheating) {
                 isCheating = true;
-                cheatingMode();
                 button.setText("作弊模式：开");
                 button.repaint();
             } else {
@@ -247,7 +229,7 @@ public class GameFrame extends JFrame{
                 button.repaint();
             }
         });
-        button.setLocation(550, 216);
+        button.setLocation(500, HEIGHT * 3/ 10);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(button);
@@ -256,21 +238,17 @@ public class GameFrame extends JFrame{
     private void addRestartButton() {
         JButton button = new JButton("重新开始");
         button.addActionListener((e) -> {
-
+            setVisible(false);
+            SwingUtilities.invokeLater(() -> {
+                GameFrame mainFrame = new GameFrame(720, 720);
+                mainFrame.setVisible(true);
+                setVisible(false);
+            });
         });
-        button.setLocation(550, HEIGHT / 2);
-        button.setSize(100, 40);
+        button.setLocation(500, HEIGHT /2);
+        button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\20.png");
-        Image temp1 = image.getImage().getScaledInstance(260,200,image.getImage().SCALE_SMOOTH);
-        image = new ImageIcon(temp1);
-        button.setIcon(image);
         add(button);
-    }
-
-    //todo: finish it
-    private void cheatingMode() {
-
     }
 
     //todo: finish it
@@ -279,25 +257,19 @@ public class GameFrame extends JFrame{
         button.addActionListener((e) -> {
 
         });
-        button.setLocation(550, HEIGHT * 3 / 5);
-        button.setSize(100, 40);
+        button.setLocation(500, HEIGHT * 3 / 5);
+        button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\19.png");
-        Image temp1 = image.getImage().getScaledInstance(260,200,image.getImage().SCALE_SMOOTH);
-        image = new ImageIcon(temp1);
-        button.setIcon(image);
         add(button);
     }
 
     //todo:finish it
     private void addRedPointLabel() {
-        Chessboard chessboard = new Chessboard(720,720);
         JLabel redPointLabel = new JLabel();
-        redPointLabel.setText(String.format("红方得分: %d",chessboard.getRedPoint()));
+        redPointLabel.setText(String.format("红方得分: %d",0));
         redPointLabel.setLocation(500, HEIGHT / 5);
         redPointLabel.setSize(200, 60);
         redPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
-        redPointLabel.setForeground(Color.WHITE);
         add(redPointLabel);
     }
 
@@ -308,7 +280,6 @@ public class GameFrame extends JFrame{
         blackPointLabel.setLocation(500, HEIGHT * 3 / 20);
         blackPointLabel.setSize(200, 60);
         blackPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
-        blackPointLabel.setForeground(Color.WHITE);
         add(blackPointLabel);
     }
 
@@ -318,13 +289,9 @@ public class GameFrame extends JFrame{
         button.addActionListener((e) -> {
 
         });
-        button.setLocation(550, HEIGHT * 2 / 5);
-        button.setSize(100, 40);
+        button.setLocation(500, HEIGHT * 2 / 5);
+        button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\18.png");
-        Image temp1 = image.getImage().getScaledInstance(260,200,image.getImage().SCALE_SMOOTH);
-        image = new ImageIcon(temp1);
-        button.setIcon(image);
         add(button);
     }
 }

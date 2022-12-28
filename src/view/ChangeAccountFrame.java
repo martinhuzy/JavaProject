@@ -1,7 +1,10 @@
 package view;
 
+<<<<<<< HEAD
 import accounts.Account;
 
+=======
+>>>>>>> 9dbbc8a57e9acde3278fe37326db7706d7ba5338
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -49,10 +52,17 @@ public class ChangeAccountFrame extends JFrame{
         button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 130);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+<<<<<<< HEAD
         ImageIcon image = new ImageIcon(".\\resource\\23.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
         button.setIcon(image);
+=======
+        //ImageIcon image = new ImageIcon();
+        //Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        //image = new ImageIcon(temp1);
+        //button.setIcon(image);
+>>>>>>> 9dbbc8a57e9acde3278fe37326db7706d7ba5338
         add(button);
     }
     private void addDeleteAccountButton() {
@@ -63,10 +73,17 @@ public class ChangeAccountFrame extends JFrame{
         button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 30);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+<<<<<<< HEAD
         ImageIcon image = new ImageIcon(".\\resource\\24.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
         button.setIcon(image);
+=======
+        //ImageIcon image = new ImageIcon();
+        //Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        //image = new ImageIcon(temp1);
+        //button.setIcon(image);
+>>>>>>> 9dbbc8a57e9acde3278fe37326db7706d7ba5338
         add(button);
     }
     private void addResetButton() {
@@ -77,6 +94,7 @@ public class ChangeAccountFrame extends JFrame{
         button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 + 70);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+<<<<<<< HEAD
         ImageIcon image = new ImageIcon(".\\resource\\25.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
@@ -84,3 +102,12 @@ public class ChangeAccountFrame extends JFrame{
         add(button);
     }
 }
+=======
+        //ImageIcon image = new ImageIcon();
+        //Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        //image = new ImageIcon(temp1);
+        //button.setIcon(image);
+        add(button);
+    }
+}
+>>>>>>> 9dbbc8a57e9acde3278fe37326db7706d7ba5338

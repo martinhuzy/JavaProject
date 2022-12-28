@@ -7,6 +7,7 @@ public class PvPFrame extends JFrame {
     private int WIDTH;
     private int HEIGHT;
     private static JLabel statusLabel;
+    public GameFrame mainFrame;
     public PvPFrame(int WIDTH, int HEIGHT) {
         setTitle("DarkChess");
         this.WIDTH = WIDTH;
@@ -37,7 +38,7 @@ public class PvPFrame extends JFrame {
         JButton button = new JButton("本地对战");
         button.addActionListener((e) -> {
             SwingUtilities.invokeLater(() -> {
-                GameFrame mainFrame = new GameFrame(720, 720);
+                mainFrame = new GameFrame(720, 720);
                 mainFrame.setVisible(true);
                 setVisible(false);
             });
@@ -57,7 +58,7 @@ public class PvPFrame extends JFrame {
         button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 30);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\8.png");
+        ImageIcon image = new ImageIcon(".\\resource\\11.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
         button.setIcon(image);
