@@ -3,8 +3,8 @@ package chessComponent;
 import controller.ClickController;
 import model.ChessColor;
 import model.ChessboardPoint;
-import view.Chessboard;
-import view.GameFrame;
+import view.GameFrameHandle;
+
 import static view.GameFrameHandle.*;
 
 import javax.swing.*;
@@ -41,6 +41,7 @@ public abstract class SquareComponent extends JComponent {
     protected final ChessColor chessColor;
     protected boolean isReversal;
     private boolean selected;
+    public boolean perspective = false;
 
     /**
      * handle click event
@@ -119,6 +120,18 @@ public abstract class SquareComponent extends JComponent {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
             clickController.onClick(this);
         }
+//        if (e.getID() == MouseEvent.MOUSE_ENTERED && !(this instanceof EmptySlotComponent)) {
+//            if(gameFrame.isCheating)
+//                perspective = true;
+//            this.repaint();
+//            if(clickController.canChangeCursor(this))
+//                gameFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//        }
+//        if (!(this instanceof EmptySlotComponent) && e.getID() == MouseEvent.MOUSE_EXITED) {
+//            perspective = false;
+//            this.repaint();
+//            gameFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//        }
     }
 
     /**

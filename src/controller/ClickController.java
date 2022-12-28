@@ -80,6 +80,9 @@ public class ClickController {
         return //squareComponent.getChessColor() != chessboard.getCurrentColor() &&
                 first.canMoveTo(chessboard.getChessComponents(), squareComponent.getChessboardPoint());
     }
+    public boolean canChangeCursor(SquareComponent squareComponent) {
+        return first != null && handleSecond(squareComponent);
+    }
 
     public void swapPlayer() {
         chessboard.setCurrentColor(chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.RED : ChessColor.BLACK);

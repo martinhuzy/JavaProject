@@ -278,6 +278,7 @@ public class GameFrame extends JFrame{
         JButton button = new JButton();
         button.setText("作弊模式：关");
         button.addActionListener((e) -> {
+            GameFrameHandle.gameFrame.repaint();
             System.out.println(GameFrameHandle.gameFrame.isCheating);
             if (!isCheating) {
                 isCheating = true;
