@@ -306,8 +306,9 @@ public class GameFrame extends JFrame{
         button.addActionListener((e) -> {
             setVisible(false);
             SwingUtilities.invokeLater(() -> {
-                GameFrame mainFrame = new GameFrame(720, 720);
-                mainFrame.setVisible(true);
+                //GameFrame mainFrame = new GameFrame(720, 720);
+                GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
+                setVisible(true);
                 setVisible(false);
             });
         });
