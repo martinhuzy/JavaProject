@@ -157,4 +157,8 @@ public abstract class SquareComponent extends JComponent {
         g.setColor(squareColor);
         g.fillRect(1, 1, this.getWidth() - 2, this.getHeight() - 2);
     }
+
+    public void randomMove() {
+
+    }
 }

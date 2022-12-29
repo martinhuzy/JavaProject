@@ -1,16 +1,20 @@
 package controller;
 
 
+import ai.AI;
 import chessComponent.SquareComponent;
 import chessComponent.EmptySlotComponent;
 import media.MusicStuff2;
 import model.ChessColor;
 import view.Chessboard;
 import view.GameFrame;
+import view.GameFrameHandle;
 
 import static view.GameFrameHandle.gameFrame;
 
 public class ClickController {
+    public AI ai = new AI(GameFrameHandle.gameFrame);
+
     private final Chessboard chessboard;
     private SquareComponent first;
 
@@ -40,6 +44,13 @@ public class ClickController {
                 first.setSelected(false);
                 first = null;
             }
+        }
+        if (GameFrameHandle.gameFrame.difficulty == 1) {
+            ai.playChessEasy();
+        } else if (GameFrameHandle.gameFrame.difficulty == 2) {
+            ai.playChessMedium();
+        } else if (GameFrameHandle.gameFrame.difficulty == 3) {
+            ai.playChessHard();
         }
     }
 

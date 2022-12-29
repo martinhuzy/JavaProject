@@ -1,6 +1,7 @@
 package view;
 
 
+import ai.AI;
 import chessComponent.*;
 import media.MusicStuff2;
 import model.*;
@@ -106,6 +107,8 @@ public class Chessboard extends JComponent {
         String filepath = "./resource/移动.wav";
         MusicStuff2 moveMusic = new MusicStuff2();
         moveMusic.playMusic(filepath);
+
+
     }
 
     public static class ChessType {
