@@ -25,7 +25,7 @@ public class Chessboard extends JComponent {
 
     private final SquareComponent[][] squareComponents = new SquareComponent[ROW_SIZE][COL_SIZE];
     //todo: you can change the initial player
-    private ChessColor currentColor = ChessColor.BLACK;
+    private ChessColor currentColor = ChessColor.RED;
 
     //all chessComponents in this chessboard are shared only one model controller
     public final ClickController clickController = new ClickController(this);

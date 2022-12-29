@@ -20,7 +20,7 @@ public class ChangeAccountFrame extends JFrame{
 
         setSize(WIDTH,HEIGHT);
         setLocationRelativeTo(null);
-        //getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
         //setBounds(200,200,500,500);
