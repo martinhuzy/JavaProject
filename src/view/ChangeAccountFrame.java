@@ -20,25 +20,47 @@ public class ChangeAccountFrame extends JFrame{
 
         setSize(WIDTH,HEIGHT);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.WHITE);
+        //getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
+        //setBounds(200,200,500,500);
 
         addBackGround();
         addResetButton();
         addDeleteAccountButton();
+        addBackButton();
         addAddAccountButton();
     }
-
     private void addBackGround() {
         ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
         JLabel picture = new JLabel(scaledImage);
         picture.setSize(720,660);
+        picture.setBounds(0,-30,720,720);
         JPanel pan = (JPanel)this.getContentPane();
         pan.setOpaque(false);
         pan.setLayout(null);
         add(picture,JLayeredPane.DEFAULT_LAYER);
     }
+
+    private void addBackButton() {
+        JButton button = new JButton("返回主菜单");
+        button.addActionListener((e) -> {
+            PlatformFrame mainFrame = new PlatformFrame(720, 720);
+            mainFrame.setVisible(true);
+            setVisible(false);
+        });
+        button.setLocation(270, 480);
+        button.setSize(180, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\26.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
+        button.requestFocus();
+        add(button);
+    }
+
+
     private void addAddAccountButton() {
         JButton button = new JButton("添加账户");
         button.addActionListener((e) -> {
@@ -47,20 +69,14 @@ public class ChangeAccountFrame extends JFrame{
                 accounts.add(newAccount);
             }
         });
-        button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 130);
+        button.setLocation(WIDTH / 2 - 90, 150);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
-
         ImageIcon image = new ImageIcon(".\\resource\\23.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
         button.setIcon(image);
-
-        //ImageIcon image = new ImageIcon();
-        //Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
-        //image = new ImageIcon(temp1);
-        //button.setIcon(image);
-
+        button.requestFocus();
         add(button);
     }
     private void addDeleteAccountButton() {
@@ -68,7 +84,7 @@ public class ChangeAccountFrame extends JFrame{
         button.addActionListener((e) ->
                 JOptionPane.showMessageDialog(this, "敬请期待！")
         );
-        button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 - 30);
+        button.setLocation(WIDTH / 2 - 90, 260);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
 
@@ -77,10 +93,6 @@ public class ChangeAccountFrame extends JFrame{
         image = new ImageIcon(temp1);
         button.setIcon(image);
 
-        //ImageIcon image = new ImageIcon();
-        //Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
-        //image = new ImageIcon(temp1);
-        //button.setIcon(image);
 
         add(button);
     }
@@ -89,7 +101,7 @@ public class ChangeAccountFrame extends JFrame{
         button.addActionListener((e) -> {
             JOptionPane.showMessageDialog(this, "敬请期待！");
         });
-        button.setLocation(WIDTH / 2 - 90, HEIGHT / 2 + 70);
+        button.setLocation(WIDTH / 2 - 90, 370);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
 

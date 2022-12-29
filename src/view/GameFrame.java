@@ -269,12 +269,20 @@ public class GameFrame extends JFrame{
         button.setLocation(500, HEIGHT * 7/ 10);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\37.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 
     private void addCheatingModeButton() {
         JButton button = new JButton();
         button.setText("作弊模式：关");
+        ImageIcon image1 = new ImageIcon(".\\resource\\33.png");
+        Image temp2 = image1.getImage().getScaledInstance(200,60,image1.getImage().SCALE_SMOOTH);
+        image1 = new ImageIcon(temp2);
+        button.setIcon(image1);
         button.addActionListener((e) -> {
             GameFrameHandle.gameFrame.repaint();
             System.out.println(GameFrameHandle.gameFrame.isCheating);
@@ -282,10 +290,24 @@ public class GameFrame extends JFrame{
                 isCheating = true;
                 button.setText("作弊模式：开");
                 button.repaint();
+                button.setLocation(500, HEIGHT * 3/ 10);
+                button.setSize(180, 60);
+                button.setFont(new Font("Rockwell", Font.BOLD, 20));
+                ImageIcon image = new ImageIcon(".\\resource\\32.png");
+                Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+                image = new ImageIcon(temp1);
+                button.setIcon(image);
             } else {
                 isCheating = false;
                 button.setText("作弊模式：关");
                 button.repaint();
+                button.setLocation(500, HEIGHT * 3/ 10);
+                button.setSize(180, 60);
+                button.setFont(new Font("Rockwell", Font.BOLD, 20));
+                ImageIcon image = new ImageIcon(".\\resource\\33.png");
+                Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+                image = new ImageIcon(temp1);
+                button.setIcon(image);
             }
         });
         button.setLocation(500, HEIGHT * 3/ 10);
@@ -315,6 +337,10 @@ public class GameFrame extends JFrame{
         button.setLocation(500, HEIGHT /2);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\35.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 
@@ -327,6 +353,10 @@ public class GameFrame extends JFrame{
         button.setLocation(500, HEIGHT * 3 / 5);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\36.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 
@@ -368,6 +398,10 @@ public class GameFrame extends JFrame{
         button.setLocation(500, HEIGHT * 2 / 5);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        ImageIcon image = new ImageIcon(".\\resource\\34.png");
+        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+        image = new ImageIcon(temp1);
+        button.setIcon(image);
         add(button);
     }
 

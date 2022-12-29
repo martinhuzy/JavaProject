@@ -37,6 +37,7 @@ public class StartGameFrame extends JFrame {
         ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
         JLabel picture = new JLabel(scaledImage);
         picture.setSize(720,660);
+        picture.setBounds(0,-30,720,720);
         JPanel pan = (JPanel)this.getContentPane();
         pan.setOpaque(false);
         pan.setLayout(null);
@@ -45,10 +46,10 @@ public class StartGameFrame extends JFrame {
 
     private void addLabelButton() {
         statusLabel = new JLabel("选择游戏模式");
-        statusLabel.setLocation(WIDTH / 10, HEIGHT / 10);
-        statusLabel.setSize(600, 60);
-        statusLabel.setFont(new Font("Rockwell", Font.BOLD, 50));
-        statusLabel.setForeground(Color.RED);
+        statusLabel.setLocation(WIDTH / 10, 80);
+        statusLabel.setSize(600, 85);
+        statusLabel.setFont(new Font("楷体", Font.BOLD, 50));
+        statusLabel.setForeground(Color.YELLOW);
         add(statusLabel);
     }
     private void addPvPButton() {
