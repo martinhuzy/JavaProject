@@ -76,11 +76,14 @@ public class StartGameFrame extends JFrame {
             Object[] options ={"简单","普通","困难"};
             String s = (String) JOptionPane.showInputDialog(null,"请选择AI难度:", "难度选择" , JOptionPane.PLAIN_MESSAGE, new ImageIcon(), options,null);
             if (Objects.equals(s, "简单")) {
-                JOptionPane.showMessageDialog(this, "简单模式敬请期待！");
+                GameFrameHandle.gameFrame.setVisible(true);
+                GameFrameHandle.gameFrame.difficulty = 1;
             } else if (Objects.equals(s, "普通")){
-                JOptionPane.showMessageDialog(this, "普通模式敬请期待！");
+                GameFrameHandle.gameFrame.setVisible(true);
+                GameFrameHandle.gameFrame.difficulty = 2;
             } else if (Objects.equals(s, "困难")) {
-                JOptionPane.showMessageDialog(this, "困难模式敬请期待！");
+                GameFrameHandle.gameFrame.setVisible(true);
+                GameFrameHandle.gameFrame.difficulty = 3;
             }
         });
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 270);

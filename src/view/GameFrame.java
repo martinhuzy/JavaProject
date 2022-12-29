@@ -1,15 +1,10 @@
 package view;
 
-import chessComponent.SoldierChessComponent;
-import chessComponent.SquareComponent;
-import controller.ClickController;
+import ai.AI;
 import controller.GameController;
-import model.ChessColor;
-import model.ChessboardPoint;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 
 public class GameFrame extends JFrame{
 
@@ -22,6 +17,7 @@ public class GameFrame extends JFrame{
     public Chessboard chessboard;
     public JLabel redPointLabel;
     public JLabel blackPointLabel;
+    public int difficulty = 0;
 
     public GameFrame(int width, int height) {
         setTitle("2022 CS109 Project Demo"); //设置标题
