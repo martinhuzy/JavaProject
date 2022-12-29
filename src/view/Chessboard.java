@@ -90,6 +90,40 @@ public class Chessboard extends JComponent {
             String filepath = "./resource/吃.wav";
             MusicStuff2 captureMusic = new MusicStuff2();
             captureMusic.playMusic(filepath);
+            if (chess2.chessColor == ChessColor.BLACK) {
+                if (chess2 instanceof GeneralChessComponent) {
+                    GameFrameHandle.gameFrame.b6 ++;
+                } else if (chess2 instanceof AdvisorChessComponent) {
+                    GameFrameHandle.gameFrame.b5 ++;
+                } else if (chess2 instanceof MinisterChessComponent) {
+                    GameFrameHandle.gameFrame.b4 ++;
+                } else if (chess2 instanceof CannonChessComponent) {
+                    GameFrameHandle.gameFrame.b3 ++;
+                } else if (chess2 instanceof ChariotChessComponent) {
+                    GameFrameHandle.gameFrame.b2 ++;
+                } else if (chess2 instanceof HorseChessComponent) {
+                    GameFrameHandle.gameFrame.b1 ++;
+                } else if (chess2 instanceof SoldierChessComponent) {
+                    GameFrameHandle.gameFrame.b0 ++;
+                }
+            } else {
+                if (chess2 instanceof GeneralChessComponent) {
+                    GameFrameHandle.gameFrame.r6 ++;
+                } else if (chess2 instanceof AdvisorChessComponent) {
+                    GameFrameHandle.gameFrame.r5 ++;
+                } else if (chess2 instanceof MinisterChessComponent) {
+                    GameFrameHandle.gameFrame.r4 ++;
+                } else if (chess2 instanceof CannonChessComponent) {
+                    GameFrameHandle.gameFrame.r3 ++;
+                } else if (chess2 instanceof ChariotChessComponent) {
+                    GameFrameHandle.gameFrame.r2 ++;
+                } else if (chess2 instanceof HorseChessComponent) {
+                    GameFrameHandle.gameFrame.r1 ++;
+                } else if (chess2 instanceof SoldierChessComponent) {
+                    GameFrameHandle.gameFrame.r0 ++;
+                }
+            }
+            GameFrameHandle.gameFrame.repaint();
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));
         }
@@ -110,6 +144,7 @@ public class Chessboard extends JComponent {
 
 
     }
+
 
     public static class ChessType {
         int priority;
@@ -225,11 +260,24 @@ public class Chessboard extends JComponent {
         chessData.forEach(System.out::println);
     }
 
+    public void saveGame(List<String> chessData) {
+    }
+
     public void checkWinner() {
         if (redPoint >= 60) {
             JOptionPane.showMessageDialog(this, "红方胜!");
+            GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
+            GameFrameHandle.gameFrame.setVisible(false);
+            StartGameFrame mainFrame = new StartGameFrame(720, 720);
+            mainFrame.setVisible(true);
+            setVisible(false);
         } else if (blackPoint >= 60) {
             JOptionPane.showMessageDialog(this, "黑方胜!");
+            GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
+            GameFrameHandle.gameFrame.setVisible(false);
+            StartGameFrame mainFrame = new StartGameFrame(720, 720);
+            mainFrame.setVisible(true);
+            setVisible(false);
         }
     }
 }

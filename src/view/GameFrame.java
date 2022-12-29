@@ -18,6 +18,21 @@ public class GameFrame extends JFrame{
     public JLabel redPointLabel;
     public JLabel blackPointLabel;
     public int difficulty = 0;
+    public int r6 = 0;
+    public int r5 = 0;
+    public int r4 = 0;
+    public int r3 = 0;
+    public int r2 = 0;
+    public int r1 = 0;
+    public int r0 = 0;
+    public int b6 = 0;
+    public int b5 = 0;
+    public int b4 = 0;
+    public int b3 = 0;
+    public int b2 = 0;
+    public int b1 = 0;
+    public int b0 = 0;
+
 
     public GameFrame(int width, int height) {
         setTitle("2022 CS109 Project Demo"); //设置标题
@@ -201,35 +216,25 @@ public class GameFrame extends JFrame{
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Rockwell", Font.BOLD, 15));
-        Chessboard chessboard1 = new Chessboard(720, 720);
+        g.drawString(String.format("%d",r6),74,100);
+        g.drawString(String.format("%d",r5),74,185);
+        g.drawString(String.format("%d",r4),74,270);
+        g.drawString(String.format("%d",r3),74,355);
+        g.drawString(String.format("%d",r2),74,440);
+        g.drawString(String.format("%d",r1),74,525);
+        g.drawString(String.format("%d",r0),74,610);
+        g.drawString(String.format("%d",b6),479,100);
+        g.drawString(String.format("%d",b5),479,185);
+        g.drawString(String.format("%d",b4),479,270);
+        g.drawString(String.format("%d",b3),479,355);
+        g.drawString(String.format("%d",b2),479,440);
+        g.drawString(String.format("%d",b1),479,525);
+        g.drawString(String.format("%d",b0),479,610);
 
-        int sum1 = 2;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 4; j++) {
-//                if(squareComponent.equals(new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE)));
-//                    sum1--;
-                    }
-        }
-                //if(sum1 == 2)
-                    g.drawString("0",74,100);
-                //if(sum1 == 1) g.drawString("1",74,100);
-                //if(sum1 == 0) g.drawString("2",74,100);
-
-
-        g.drawString("0",74,185);
-        g.drawString("0",74,270);
-        g.drawString("0",74,355);
-        g.drawString("0",74,440);
-        g.drawString("0",74,525);
-        g.drawString("0",74,610);
-        g.drawString("0",479,100);
-        g.drawString("0",479,185);
-        g.drawString("0",479,270);
-        g.drawString("0",479,355);
-        g.drawString("0",479,440);
-        g.drawString("0",479,525);
-        g.drawString("0",479,610);
-
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Rockwell", Font.BOLD, 25));
+        g.drawString(String.format("%d",r0 + (r1 + r2 + r3 + r4) * 5 + r5 * 10 + r6 * 30),610,180);
+        g.drawString(String.format("%d",b0 + (b1 + b2 + b3 + b4) * 5 + b5 *10 + b6 * 30),610,215);
 
     }
 
@@ -264,7 +269,6 @@ public class GameFrame extends JFrame{
             GameFrameHandle.gameFrame.setVisible(false);
             StartGameFrame mainFrame = new StartGameFrame(720, 720);
             mainFrame.setVisible(true);
-            setVisible(false);
         });
         button.setLocation(500, HEIGHT * 7/ 10);
         button.setSize(180, 60);
@@ -348,7 +352,8 @@ public class GameFrame extends JFrame{
     private void addSaveGameButton() {
         JButton button = new JButton("存储游戏");
         button.addActionListener((e) -> {
-
+            String path = JOptionPane.showInputDialog(this, "请输入存档路径");
+            gameController.saveGameToFile(path);
         });
         button.setLocation(500, HEIGHT * 3 / 5);
         button.setSize(180, 60);
@@ -363,11 +368,9 @@ public class GameFrame extends JFrame{
     //todo:finish it
     private void addRedPointLabel() {
         redPointLabel = new JLabel();
-        int p = 0;
-        if (GameFrameHandle.gameFrame != null) {
-            p = GameFrameHandle.gameFrame.chessboard.redPoint;
-        }
-        redPointLabel.setText(String.format("红方得分: %d", p));
+        //int p;
+        //p = r0 + (r1 + r2 + r3 + r4) * 5 + r5 * 10 + r6 * 30;
+        redPointLabel.setText("红方得分: ");
         redPointLabel.setLocation(500, HEIGHT / 5);
         redPointLabel.setSize(200, 60);
         redPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -378,10 +381,9 @@ public class GameFrame extends JFrame{
     //todo:finish it
     private void addBlackPointLabel() {
         blackPointLabel = new JLabel();
-        blackPointLabel.setText(String.format("黑方得分: %d", 0));
-        if (GameFrameHandle.gameFrame != null) {
-            blackPointLabel.setText(String.format("黑方得分: %d", GameFrameHandle.gameFrame.chessboard.blackPoint));
-        }
+        int p;
+        p = b0 + (b1 + b2 + b3 + b4) * 5 + b5 *10 + b6 * 30;
+        blackPointLabel.setText("黑方得分: ");
         blackPointLabel.setLocation(500, HEIGHT * 3 / 20);
         blackPointLabel.setSize(200, 60);
         blackPointLabel.setFont(new Font("Rockwell", Font.BOLD, 20));

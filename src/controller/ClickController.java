@@ -23,6 +23,7 @@ public class ClickController {
     }
 
     public void onClick(SquareComponent squareComponent) {
+        gameFrame.repaint();
         //判断第一次点击
         if (first == null) {
             if (handleFirst(squareComponent)) {

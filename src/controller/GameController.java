@@ -30,12 +30,14 @@ public class GameController {
         }
         return null;
     }
-//    public void saveGameToFile() {
-//        //String path = JOptionPane.showInputDialog(this, "存档路径：");
-//        try {
-//            Files.write(Path.of(FileChooser.chooseFile(1)+"/archive.txt"), this.convertToList(), Charset.defaultCharset());}
-//        catch (IOException e) {e.printStackTrace();}
-//        catch (Exception e) {throw new RuntimeException(e);}
-//    }
-
+    public List<String> saveGameToFile(String path) {
+        try {
+            List<String> chessData = Files.readAllLines(Path.of(path));
+            chessboard.saveGame(chessData);
+            return chessData;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
