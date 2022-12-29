@@ -16,7 +16,7 @@ public class ClickController {
     public AI ai = new AI(GameFrameHandle.gameFrame);
 
     private final Chessboard chessboard;
-    private SquareComponent first;
+    public SquareComponent first;
 
     public ClickController(Chessboard chessboard) {
         this.chessboard = chessboard;

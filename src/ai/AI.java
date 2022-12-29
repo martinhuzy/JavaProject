@@ -8,12 +8,14 @@ import view.GameFrameHandle;
 
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
 import static view.GameFrameHandle.*;
 
 
-public class AI extends Thread {
+public class AI {
     GameFrame mainFrame;
     private int mode = 1;//0还有没翻开的棋  1所有棋都翻开了
+    private int unReversal;
     public AI(GameFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
@@ -21,7 +23,7 @@ public class AI extends Thread {
     //简单：能翻就翻，翻完全随机
     public void playChessEasy() {
         while (gameFrame.chessboard.getCurrentColor() == ChessColor.BLACK) {
-            System.out.println("I am working!");
+            unReversal = 0;
             Random random = new Random();
             int randomX = random.nextInt(8);
             int randomY = random.nextInt(4);
@@ -29,9 +31,14 @@ public class AI extends Thread {
             for (int i = 0; i < 8; i ++) {
                 for (int j = 0; j < 4; j ++) {
                     if (!gameFrame.chessboard.getChessComponents()[i][j].isReversal()) {
-                        mode = 0;
+                        unReversal ++;
                     }
                 }
+            }
+            if (unReversal > 3) {
+                mode = 0;
+            } else {
+                mode = 1;
             }
             while (mode == 0) {
                 if (!randomSquareComponent.isReversal()) {
@@ -50,6 +57,7 @@ public class AI extends Thread {
                     randomSquareComponent = gameFrame.chessboard.getChessComponents()[randomX][randomY];
                 } else {
                     randomSquareComponent.randomMove();
+                    break;
                 }
             }
         }

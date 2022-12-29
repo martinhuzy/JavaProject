@@ -10,6 +10,7 @@ import static view.GameFrameHandle.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 /**
  * 这个类是一个抽象类，主要表示8*4棋盘上每个格子的棋子情况。
@@ -25,6 +26,7 @@ public abstract class SquareComponent extends JComponent {
     protected static final Font CHESS_FONT = new Font("Rockwell", Font.BOLD, 36);
     protected int priority;
     public int points;
+    public boolean canMoveToThisSquare = false;
 
     /**
      * chessboardPoint: 表示8*4棋盘中，当前棋子在棋格对应的位置，如(0, 0), (1, 0)等等
@@ -153,12 +155,51 @@ public abstract class SquareComponent extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
+        canMoveToThisSquare();
         System.out.printf("repaint chess [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
-        g.setColor(squareColor);
+        if (canMoveToThisSquare) {
+            g.setColor(Color.red);
+        } else {
+            g.setColor(squareColor);
+        }
         g.fillRect(1, 1, this.getWidth() - 2, this.getHeight() - 2);
     }
 
-    public void randomMove() {
+    private void canMoveToThisSquare() {
+        if (clickController.first != null) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (clickController.first.canMoveTo(gameFrame.chessboard.getChessComponents(), gameFrame.chessboard.getChessComponents()[i][j].getChessboardPoint())) {
+                        gameFrame.chessboard.getChessComponents()[i][j].canMoveToThisSquare = true;
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 4; j++) {
+                    gameFrame.chessboard.getChessComponents()[i][j].canMoveToThisSquare = false;
+                }
+            }
+        }
+    }
 
+    public void randomMove() {
+        Random random = new Random();
+        int randomX = random.nextInt(8);
+        int randomY = random.nextInt(4);
+        SquareComponent randomDestination = gameFrame.chessboard.getChessComponents()[randomX][randomY];
+        //SquareComponent randomDestination = gameFrame.chessboard.getChessComponents()[random.nextInt(8)][random.nextInt(4)];
+        while (true) {
+            if (this.canMoveTo(gameFrame.chessboard.getChessComponents(), randomDestination.getChessboardPoint())) {
+                clickController.onClick(this);
+                clickController.onClick(randomDestination);
+                break;
+            } else {
+                //randomDestination = gameFrame.chessboard.getChessComponents()[random.nextInt(8)][random.nextInt(4)];
+                randomX = random.nextInt(8);
+                randomY = random.nextInt(4);
+                randomDestination = gameFrame.chessboard.getChessComponents()[randomX][randomY];
+            }
+        }
     }
 }

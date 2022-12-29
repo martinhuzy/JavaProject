@@ -3,6 +3,7 @@ package controller;
 import view.Chessboard;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -29,5 +30,12 @@ public class GameController {
         }
         return null;
     }
+//    public void saveGameToFile() {
+//        //String path = JOptionPane.showInputDialog(this, "存档路径：");
+//        try {
+//            Files.write(Path.of(FileChooser.chooseFile(1)+"/archive.txt"), this.convertToList(), Charset.defaultCharset());}
+//        catch (IOException e) {e.printStackTrace();}
+//        catch (Exception e) {throw new RuntimeException(e);}
+//    }
 
 }

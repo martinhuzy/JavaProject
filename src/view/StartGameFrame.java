@@ -79,12 +79,15 @@ public class StartGameFrame extends JFrame {
             if (Objects.equals(s, "简单")) {
                 GameFrameHandle.gameFrame.setVisible(true);
                 GameFrameHandle.gameFrame.difficulty = 1;
+                setVisible(false);
             } else if (Objects.equals(s, "普通")){
                 GameFrameHandle.gameFrame.setVisible(true);
                 GameFrameHandle.gameFrame.difficulty = 2;
+                setVisible(false);
             } else if (Objects.equals(s, "困难")) {
                 GameFrameHandle.gameFrame.setVisible(true);
                 GameFrameHandle.gameFrame.difficulty = 3;
+                setVisible(false);
             }
         });
         button.setLocation(WIDTH / 10, HEIGHT / 10 + 270);

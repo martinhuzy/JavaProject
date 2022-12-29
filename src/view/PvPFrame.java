@@ -27,7 +27,7 @@ public class PvPFrame extends JFrame {
     private void addBackGround() {
         ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
         JLabel picture = new JLabel(scaledImage);
-        picture.setSize(720,660);
+        picture.setSize(720,720);
         JPanel pan = (JPanel)this.getContentPane();
         pan.setOpaque(false);
         pan.setLayout(null);
