@@ -245,7 +245,7 @@ public class GameFrame extends JFrame{
     }
 
     private void addLabel() {
-        statusLabel = new JLabel("决定先手");
+        statusLabel = new JLabel("红方先手");
         statusLabel.setLocation(500, HEIGHT / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("楷体", Font.BOLD, 40));
