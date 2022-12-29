@@ -12,7 +12,7 @@ public class GameFrame extends JFrame{
     public boolean isCheating = false;
     private final int HEIGHT;
     public final int CHESSBOARD_SIZE;
-    private GameController gameController;
+    public GameController gameController;
     private static JLabel statusLabel;
     public Chessboard chessboard;
     public JLabel redPointLabel;
@@ -352,8 +352,8 @@ public class GameFrame extends JFrame{
     private void addSaveGameButton() {
         JButton button = new JButton("存储游戏");
         button.addActionListener((e) -> {
-            String path = JOptionPane.showInputDialog(this, "请输入存档路径");
-            gameController.saveGameToFile(path);
+            gameController.saveGameToFile();
+            JOptionPane.showMessageDialog(this, "存储成功！");
         });
         button.setLocation(500, HEIGHT * 3 / 5);
         button.setSize(180, 60);

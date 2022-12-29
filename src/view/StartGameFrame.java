@@ -115,7 +115,11 @@ public class StartGameFrame extends JFrame {
         button.addActionListener(e -> {
             System.out.println("点击加载");
             String path = JOptionPane.showInputDialog(this, "请输入存档路径");
-            gameController.loadGameFromFile(path);
+            if (!Objects.equals(path, "./saves/存档.txt")) {
+                JOptionPane.showMessageDialog(this,"101","Error", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                gameController.loadGameFromFile(path);
+            }
         });
     }
     private void addBackButton() {

@@ -9,6 +9,10 @@ import controller.ClickController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -257,10 +261,109 @@ public class Chessboard extends JComponent {
      * @param chessData
      */
     public void loadGame(List<String> chessData) {
-        chessData.forEach(System.out::println);
+        for (int i = 0; i < 17; i ++) {
+            if (Objects.equals(chessData.get(16), "1")) {
+                setCurrentColor(ChessColor.RED);
+            } else if (Objects.equals(chessData.get(16), "2")) {
+                setCurrentColor(ChessColor.BLACK);
+            } else {
+                JOptionPane.showMessageDialog(this,"104","Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        GameFrameHandle.gameFrame.repaint();
     }
 
-    public void saveGame(List<String> chessData) {
+    public void saveGame() {
+        String[][] allChess = new String[8][4];
+        int[][] allChessReversal = new int[8][4];//0.hidden 1.reversal
+        int colorNow = 0;//1.red 2.black
+        if (getCurrentColor() == ChessColor.RED)
+            colorNow = 1;
+        if (getCurrentColor() == ChessColor.BLACK)
+            colorNow = 2;
+        for (int i = 0; i < 8; i ++) {
+            for (int j = 0; j < 4; j ++) {
+                if (squareComponents[i][j].chessColor == ChessColor.RED) {
+                    if (squareComponents[i][j] instanceof GeneralChessComponent)
+                        allChess[i][j] = "G";
+                    else if (squareComponents[i][j] instanceof AdvisorChessComponent)
+                        allChess[i][j] = "A";
+                    else if (squareComponents[i][j] instanceof MinisterChessComponent)
+                        allChess[i][j] = "M";
+                    else if (squareComponents[i][j] instanceof ChariotChessComponent)
+                        allChess[i][j] = "C";
+                    else if (squareComponents[i][j] instanceof HorseChessComponent)
+                        allChess[i][j] = "H";
+                    else if (squareComponents[i][j] instanceof CannonChessComponent)
+                        allChess[i][j] = "N";
+                    else if (squareComponents[i][j] instanceof SoldierChessComponent)
+                        allChess[i][j] = "S";
+                    else if (squareComponents[i][j] instanceof EmptySlotComponent)
+                        allChess[i][j] = "0";
+                }  else {
+                    if (squareComponents[i][j] instanceof GeneralChessComponent)
+                        allChess[i][j] = "g";
+                    else if (squareComponents[i][j] instanceof AdvisorChessComponent)
+                        allChess[i][j] = "a";
+                    else if (squareComponents[i][j] instanceof MinisterChessComponent)
+                        allChess[i][j] = "m";
+                    else if (squareComponents[i][j] instanceof ChariotChessComponent)
+                        allChess[i][j] = "c";
+                    else if (squareComponents[i][j] instanceof HorseChessComponent)
+                        allChess[i][j] = "h";
+                    else if (squareComponents[i][j] instanceof CannonChessComponent)
+                        allChess[i][j] = "n";
+                    else if (squareComponents[i][j] instanceof SoldierChessComponent)
+                        allChess[i][j] = "s";
+                    else if (squareComponents[i][j] instanceof EmptySlotComponent)
+                        allChess[i][j] = "0";
+                }
+
+                if (!(squareComponents[i][j].isReversal()))
+                    allChessReversal[i][j] = 0;
+                else
+                    allChessReversal[i][j] = 1;
+            }
+        }
+        try {
+            String path = "./saves";
+            String title = "存档";
+            String content = String.format("%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%s %s %s %s\n%d\n%d %d %d %d %d %d %d\n%d %d %d %d %d %d %d\n",
+                    allChess[0][0],allChess[0][1],allChess[0][2],allChess[0][3],allChess[1][0],allChess[1][1],allChess[1][2],allChess[1][3],
+                    allChess[2][0],allChess[2][1],allChess[2][2],allChess[2][3],allChess[3][0],allChess[3][1],allChess[3][2],allChess[3][3],
+                    allChess[4][0],allChess[4][1],allChess[4][2],allChess[4][3],allChess[5][0],allChess[5][1],allChess[5][2],allChess[5][3],
+                    allChess[6][0],allChess[6][1],allChess[6][2],allChess[6][3],allChess[7][0],allChess[7][1],allChess[7][2],allChess[7][3],
+                    allChessReversal[0][0],allChessReversal[0][1],allChessReversal[0][2],allChessReversal[0][3],allChessReversal[1][0],allChessReversal[1][1],allChessReversal[1][2],allChessReversal[1][3],
+                    allChessReversal[2][0],allChessReversal[2][1],allChessReversal[2][2],allChessReversal[2][3],allChessReversal[3][0],allChessReversal[3][1],allChessReversal[3][2],allChessReversal[3][3],
+                    allChessReversal[4][0],allChessReversal[4][1],allChessReversal[4][2],allChessReversal[4][3],allChessReversal[5][0],allChessReversal[5][1],allChessReversal[5][2],allChessReversal[5][3],
+                    allChessReversal[6][0],allChessReversal[6][1],allChessReversal[6][2],allChessReversal[6][3],allChessReversal[7][0],allChessReversal[7][1],allChessReversal[7][2],allChessReversal[7][3],
+                    colorNow,
+                    GameFrameHandle.gameFrame.r6,GameFrameHandle.gameFrame.r5,GameFrameHandle.gameFrame.r4,GameFrameHandle.gameFrame.r3,GameFrameHandle.gameFrame.r2,GameFrameHandle.gameFrame.r1,GameFrameHandle.gameFrame.r0,
+                    GameFrameHandle.gameFrame.b6,GameFrameHandle.gameFrame.b5,GameFrameHandle.gameFrame.b4,GameFrameHandle.gameFrame.b3,GameFrameHandle.gameFrame.b2,GameFrameHandle.gameFrame.b1,GameFrameHandle.gameFrame.b0
+            );
+            File save = new File(path);
+            if (!save.exists()) {
+                save.mkdirs();
+            }
+            File writeName = new File(path + "/" + title + ".txt");
+            if (!writeName.exists()) {
+                writeName.createNewFile();
+            }
+//            else {
+//                String osName = System.getProperties().getProperty("os.name");
+//                if (osName.equals("Linux")) {
+//                    content = "\r" + content;
+//                } else {
+//                    content = "\r\n" + content;
+//                }
+//            }
+            BufferedWriter out = new BufferedWriter(new FileWriter(writeName, false));
+            out.write(content);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkWinner() {

@@ -30,14 +30,7 @@ public class GameController {
         }
         return null;
     }
-    public List<String> saveGameToFile(String path) {
-        try {
-            List<String> chessData = Files.readAllLines(Path.of(path));
-            chessboard.saveGame(chessData);
-            return chessData;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void saveGameToFile() {
+        chessboard.saveGame();
     }
 }
