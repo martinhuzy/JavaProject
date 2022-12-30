@@ -1,12 +1,17 @@
 package view;
 
+import media.MusicStuff1;
+
 import javax.swing.*;
 import java.awt.*;
+import javax.sound.sampled.*;
+import java.io.File;
 
 public class PlatformFrame extends JFrame {
     private int WIDTH;
     private int HEIGHT;
     private static JLabel statusLabel;
+    public static boolean flag = true;
 
     public PlatformFrame(int WIDTH,int HEIGHT) {
         setTitle("DarkChess");
@@ -95,12 +100,42 @@ public class PlatformFrame extends JFrame {
     private void addSettingsButton() {
         JButton button = new JButton("设置");
         button.addActionListener((e) -> {
-            Object[] options ={"增大","减小"};
-            int m = JOptionPane.showOptionDialog(null,"调整背景音乐","音量",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            Object[] options ={"打开","关闭","调节"};
+            int m = JOptionPane.showOptionDialog(null,"调整背景音乐","音乐",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            String filepath = "./resource/项斯华 - 高山流水 (古筝独奏).wav";
+            MusicStuff1 backGroundMusic = new MusicStuff1();
             if (m == JOptionPane.YES_OPTION) {
-                System.exit(0);
+                backGroundMusic.playMusic(filepath);
             }
-        }); button.setLocation(WIDTH / 10, HEIGHT / 10 + 360);
+            if(m == JOptionPane.NO_OPTION) {
+                backGroundMusic.endMusic();
+//                try {
+//                    File file = new File("./resource/项斯华 - 高山流水 (古筝独奏).wav");
+//                    if (file.exists()) {
+//                        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
+//                        Clip clip = AudioSystem.getClip();
+//                        clip.open(audioInput);
+//                        clip.start();
+//                        clip.loop(Clip.LOOP_CONTINUOUSLY);
+//                        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+//                        double percent = 0;   // 这里调节你想要控制的音量的大小
+////                /* -80->6.206**/
+//                        float dB = (float) (percent);
+//                        volume.setValue(dB);
+//
+//                    }
+//                } catch (Exception ex) {
+//                    ex.printStackTrace();
+//                }
+            }
+            if(m == JOptionPane.CANCEL_OPTION){
+                button.addActionListener(e1 -> {
+                    JOptionPane.showInputDialog(this, "请输入音量大小");
+                });
+            }
+
+        });
+        button.setLocation(WIDTH / 10, HEIGHT / 10 + 360);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         ImageIcon image = new ImageIcon(".\\resource\\30.png");
