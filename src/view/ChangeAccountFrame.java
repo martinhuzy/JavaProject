@@ -29,7 +29,8 @@ public class ChangeAccountFrame extends JFrame{
         addResetButton();
         addDeleteAccountButton();
         addBackButton();
-        addAddAccountButton();
+        //addAddAccountButton();
+        addLogInAccountButton();
         addBackGround();
     }
     private void addBackGround() {
@@ -50,7 +51,7 @@ public class ChangeAccountFrame extends JFrame{
             mainFrame.setVisible(true);
             setVisible(false);
         });
-        button.setLocation(270, 480);
+        button.setLocation(270, 520);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         ImageIcon image = new ImageIcon(".\\resource\\26.png");
@@ -61,36 +62,59 @@ public class ChangeAccountFrame extends JFrame{
         button.revalidate();
         button.repaint();
         add(button);
+
     }
 
 
-    private void addAddAccountButton() {
-        JButton button = new JButton("添加账户");
+    private void addLogInAccountButton() {
+        JButton button = new JButton("登录账户");
         button.addActionListener((e) -> {
-            String newAccount = JOptionPane.showInputDialog(this,"账户名","请输入想要添加的账号", JOptionPane.INFORMATION_MESSAGE);
-            if (!accounts.contains(newAccount)) {
-                accounts.add(newAccount);
-            }
+            Creat l = new Creat();
+            l.creatJf();
         });
-        button.setLocation(WIDTH / 2 - 90, 150);
-        button.setSize(180, 60);
-        button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        ImageIcon image = new ImageIcon(".\\resource\\23.png");
-        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
-        image = new ImageIcon(temp1);
-        button.setIcon(image);
-        button.requestFocus();
-        button.requestFocus();
-        button.revalidate();
-        button.repaint();
-        add(button);
-    }
+
+            button.setLocation(WIDTH / 2 - 90, 100);
+            button.setSize(180, 60);
+            button.setFont(new Font("Rockwell", Font.BOLD, 20));
+            ImageIcon image = new ImageIcon(".\\resource\\38.png");
+            Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+            image = new ImageIcon(temp1);
+            button.setIcon(image);
+            //button.requestFocus();
+            //button.requestFocus();
+            //button.revalidate();
+            //button.repaint();
+            add(button);
+        }
+
+//    private void addAddAccountButton() {
+//        JButton button = new JButton("添加账户");
+//        button.addActionListener((e) -> {
+//            String newAccount = JOptionPane.showInputDialog(this,"账户名","请输入想要添加的账号", JOptionPane.INFORMATION_MESSAGE);
+//            if (!accounts.contains(newAccount)) {
+//                accounts.add(newAccount);
+//            }
+//
+//        });
+//        button.setLocation(WIDTH / 2 - 90, 170);
+//        button.setSize(180, 60);
+//        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+//        ImageIcon image = new ImageIcon(".\\resource\\23.png");
+//        Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
+//        image = new ImageIcon(temp1);
+//        button.setIcon(image);
+//        button.requestFocus();
+//        button.requestFocus();
+//        button.revalidate();
+//        button.repaint();
+//        add(button);
+//    }
     private void addDeleteAccountButton() {
         JButton button = new JButton("删除账户");
         button.addActionListener((e) ->
                 JOptionPane.showMessageDialog(this, "敬请期待！")
         );
-        button.setLocation(WIDTH / 2 - 90, 260);
+        button.setLocation(WIDTH / 2 - 90, 240);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
 
@@ -110,7 +134,7 @@ public class ChangeAccountFrame extends JFrame{
         button.addActionListener((e) -> {
             JOptionPane.showMessageDialog(this, "敬请期待！");
         });
-        button.setLocation(WIDTH / 2 - 90, 370);
+        button.setLocation(WIDTH / 2 - 90, 380);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
 
