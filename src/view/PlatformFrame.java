@@ -94,8 +94,13 @@ public class PlatformFrame extends JFrame {
     }
     private void addSettingsButton() {
         JButton button = new JButton("设置");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "敬请期待！"));
-        button.setLocation(WIDTH / 10, HEIGHT / 10 + 360);
+        button.addActionListener((e) -> {
+            Object[] options ={"增大","减小"};
+            int m = JOptionPane.showOptionDialog(null,"调整背景音乐","音量",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (m == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }); button.setLocation(WIDTH / 10, HEIGHT / 10 + 360);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         ImageIcon image = new ImageIcon(".\\resource\\30.png");

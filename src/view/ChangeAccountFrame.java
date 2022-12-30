@@ -25,11 +25,12 @@ public class ChangeAccountFrame extends JFrame{
         setLayout(null);
         //setBounds(200,200,500,500);
 
-        addBackGround();
+
         addResetButton();
         addDeleteAccountButton();
         addBackButton();
         addAddAccountButton();
+        addBackGround();
     }
     private void addBackGround() {
         ImageIcon scaledImage=new ImageIcon(".\\resource\\2.png");
@@ -57,6 +58,8 @@ public class ChangeAccountFrame extends JFrame{
         image = new ImageIcon(temp1);
         button.setIcon(image);
         button.requestFocus();
+        button.revalidate();
+        button.repaint();
         add(button);
     }
 
@@ -77,6 +80,9 @@ public class ChangeAccountFrame extends JFrame{
         image = new ImageIcon(temp1);
         button.setIcon(image);
         button.requestFocus();
+        button.requestFocus();
+        button.revalidate();
+        button.repaint();
         add(button);
     }
     private void addDeleteAccountButton() {
@@ -91,6 +97,9 @@ public class ChangeAccountFrame extends JFrame{
         ImageIcon image = new ImageIcon(".\\resource\\24.png");
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
+        button.requestFocus();
+        button.revalidate();
+        button.repaint();
         button.setIcon(image);
 
 
@@ -109,6 +118,9 @@ public class ChangeAccountFrame extends JFrame{
         Image temp1 = image.getImage().getScaledInstance(200,60,image.getImage().SCALE_SMOOTH);
         image = new ImageIcon(temp1);
         button.setIcon(image);
+        button.requestFocus();
+        button.revalidate();
+        button.repaint();
         add(button);
     }
 }
