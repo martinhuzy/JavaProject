@@ -261,16 +261,104 @@ public class Chessboard extends JComponent {
      * @param chessData
      */
     public void loadGame(List<String> chessData) {
-        for (int i = 0; i < 17; i ++) {
-            if (Objects.equals(chessData.get(16), "1")) {
-                setCurrentColor(ChessColor.RED);
-            } else if (Objects.equals(chessData.get(16), "2")) {
-                setCurrentColor(ChessColor.BLACK);
-            } else {
-                JOptionPane.showMessageDialog(this,"104","Error", JOptionPane.INFORMATION_MESSAGE);
+        for (int i = 0; i < 8; i ++) {
+            for (int j = 0; j < 4; j ++) {
+                GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = null;
             }
         }
-        GameFrameHandle.gameFrame.repaint();
+        System.out.println("清零");
+        if (chessData.size() != 19) {
+            StartGameFrame mainFrame = new StartGameFrame(720,720);
+            mainFrame.setVisible(true);
+            JOptionPane.showMessageDialog(mainFrame, "102", "Error", JOptionPane.INFORMATION_MESSAGE);
+            GameFrameHandle.gameFrame.setVisible(false);
+        } else {
+            for (int i = 0; i < 17; i++) {
+                if (Objects.equals(chessData.get(16), "1")) {
+                    GameFrame.getStatusLabel().setForeground(Color.RED);
+                    GameFrame.getStatusLabel().setText(String.format("轮到红方"));
+                    GameFrameHandle.gameFrame.chessboard.setCurrentColor(ChessColor.RED);
+                } else if (Objects.equals(chessData.get(16), "2")) {
+                    GameFrameHandle.gameFrame.chessboard.setCurrentColor(ChessColor.BLACK);
+                    GameFrame.getStatusLabel().setForeground(Color.BLACK);
+                    GameFrame.getStatusLabel().setText(String.format("轮到黑方"));
+                } else {
+                    StartGameFrame mainFrame = new StartGameFrame(720,720);
+                    mainFrame.setVisible(true);
+                    JOptionPane.showMessageDialog(mainFrame, "104", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    GameFrameHandle.gameFrame.setVisible(false);
+                }
+            }
+            for (int i = 0; i < 8; i++) {
+                String[] s = chessData.get(i).split(" ");
+                for (int j = 0; j < 4; j++) {
+                    if (Objects.equals(s[j], "G"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "A"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "M"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "C"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "H"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "N"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "S"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "g"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "a"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "m"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "c"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "h"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "n"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "s"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                    else if (Objects.equals(s[j], "0"))
+                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new EmptySlotComponent(new ChessboardPoint(i, j), calculatePoint(i, j), clickController,  CHESS_SIZE);
+                    else {
+                        StartGameFrame mainFrame = new StartGameFrame(720,720);
+                        mainFrame.setVisible(true);
+                        JOptionPane.showMessageDialog(mainFrame, "103", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        GameFrameHandle.gameFrame.setVisible(false);
+                    }
+                    GameFrameHandle.gameFrame.chessboard.squareComponents[i][j].setVisible(true);
+                    putChessOnBoard(GameFrameHandle.gameFrame.chessboard.squareComponents[i][j]);
+                }
+            }
+
+            for (int i = 8; i < 16; i++) {
+                String[] s = chessData.get(i).split(" ");
+                for (int j = 0; j < 4; j++) {
+                    GameFrameHandle.gameFrame.chessboard.squareComponents[i - 8][j].setReversal(!Objects.equals(s[j], "0"));
+                }
+            }
+            String[] s1 = chessData.get(17).split(" ");
+            String[] s2 = chessData.get(18).split(" ");
+            GameFrameHandle.gameFrame.r6 = Integer.parseInt(s1[0]);
+            GameFrameHandle.gameFrame.r5 = Integer.parseInt(s1[1]);
+            GameFrameHandle.gameFrame.r4 = Integer.parseInt(s1[2]);
+            GameFrameHandle.gameFrame.r3 = Integer.parseInt(s1[3]);
+            GameFrameHandle.gameFrame.r2 = Integer.parseInt(s1[4]);
+            GameFrameHandle.gameFrame.r1 = Integer.parseInt(s1[5]);
+            GameFrameHandle.gameFrame.r0 = Integer.parseInt(s1[6]);
+            GameFrameHandle.gameFrame.b6 = Integer.parseInt(s2[0]);
+            GameFrameHandle.gameFrame.b5 = Integer.parseInt(s2[1]);
+            GameFrameHandle.gameFrame.b4 = Integer.parseInt(s2[2]);
+            GameFrameHandle.gameFrame.b3 = Integer.parseInt(s2[3]);
+            GameFrameHandle.gameFrame.b2 = Integer.parseInt(s2[4]);
+            GameFrameHandle.gameFrame.b1 = Integer.parseInt(s2[5]);
+            GameFrameHandle.gameFrame.b0 = Integer.parseInt(s2[6]);
+
+
+            GameFrameHandle.gameFrame.repaint();
+        }
     }
 
     public void saveGame() {

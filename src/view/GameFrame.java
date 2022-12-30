@@ -2,6 +2,7 @@ package view;
 
 import ai.AI;
 import controller.GameController;
+import model.ChessColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +56,6 @@ public class GameFrame extends JFrame{
         addBlackPointLabel();
         addRegretButton();
         addBackGround();
-        //addlabel1();
     }
 
     private void addBackGround() {
@@ -250,11 +250,15 @@ public class GameFrame extends JFrame{
     }
 
     private void addLabel() {
-        statusLabel = new JLabel("红方先手");
+        statusLabel = new JLabel();
+        String text = "轮到红方";
+        if (chessboard != null)
+            text = chessboard.getCurrentColor() == ChessColor.BLACK ? String.format("轮到黑方"): String.format("轮到红方");
+        statusLabel.setText(text);
         statusLabel.setLocation(500, HEIGHT / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("楷体", Font.BOLD, 40));
-        statusLabel.setForeground(Color.YELLOW);
+        statusLabel.setForeground(Color.RED);
         add(statusLabel);
     }
 
@@ -269,6 +273,7 @@ public class GameFrame extends JFrame{
             GameFrameHandle.gameFrame.setVisible(false);
             StartGameFrame mainFrame = new StartGameFrame(720, 720);
             mainFrame.setVisible(true);
+            setVisible(false);
         });
         button.setLocation(500, HEIGHT * 7/ 10);
         button.setSize(180, 60);

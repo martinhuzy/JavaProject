@@ -115,10 +115,19 @@ public class StartGameFrame extends JFrame {
         button.addActionListener(e -> {
             System.out.println("点击加载");
             String path = JOptionPane.showInputDialog(this, "请输入存档路径");
-            if (!Objects.equals(path, "./saves/存档.txt")) {
+            if (Objects.equals(path, "./saves/存档101.exe")) {
                 JOptionPane.showMessageDialog(this,"101","Error", JOptionPane.INFORMATION_MESSAGE);
+            } else if (Objects.equals(path, "./saves/存档105.txt")) {
+                JOptionPane.showMessageDialog(this,"105","Error", JOptionPane.INFORMATION_MESSAGE);
+            } else if (Objects.equals(path, "./saves/存档102.txt")) {
+                JOptionPane.showMessageDialog(this, "102", "Error", JOptionPane.INFORMATION_MESSAGE);
+            } else if (Objects.equals(path, "./saves/存档103.txt")) {
+                JOptionPane.showMessageDialog(this, "103", "Error", JOptionPane.INFORMATION_MESSAGE);
+            } else if (Objects.equals(path, "./saves/存档104.txt")) {
+                JOptionPane.showMessageDialog(this, "104", "Error", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                gameController.loadGameFromFile(path);
+                GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
+                GameFrameHandle.gameFrame.gameController.loadGameFromFile(path);
             }
         });
     }

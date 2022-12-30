@@ -1,6 +1,7 @@
 package controller;
 
 import view.Chessboard;
+import view.GameFrameHandle;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -23,7 +24,7 @@ public class GameController {
     public List<String> loadGameFromFile(String path) {
         try {
             List<String> chessData = Files.readAllLines(Path.of(path));
-            chessboard.loadGame(chessData);
+            GameFrameHandle.gameFrame.chessboard.loadGame(chessData);
             return chessData;
         } catch (IOException e) {
             e.printStackTrace();
