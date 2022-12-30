@@ -109,29 +109,10 @@ public class PlatformFrame extends JFrame {
             }
             if(m == JOptionPane.NO_OPTION) {
                 backGroundMusic.endMusic();
-//                try {
-//                    File file = new File("./resource/项斯华 - 高山流水 (古筝独奏).wav");
-//                    if (file.exists()) {
-//                        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
-//                        Clip clip = AudioSystem.getClip();
-//                        clip.open(audioInput);
-//                        clip.start();
-//                        clip.loop(Clip.LOOP_CONTINUOUSLY);
-//                        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-//                        double percent = 0;   // 这里调节你想要控制的音量的大小
-////                /* -80->6.206**/
-//                        float dB = (float) (percent);
-//                        volume.setValue(dB);
-//
-//                    }
-//                } catch (Exception ex) {
-//                    ex.printStackTrace();
-//                }
             }
             if(m == JOptionPane.CANCEL_OPTION){
-                button.addActionListener(e1 -> {
-                    JOptionPane.showInputDialog(this, "请输入音量大小");
-                });
+                JOptionPane.showInputDialog(this, "请输入音量大小(0-100)");
+                    
             }
 
         });
