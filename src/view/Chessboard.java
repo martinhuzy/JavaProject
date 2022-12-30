@@ -329,7 +329,7 @@ public class Chessboard extends JComponent {
                         GameFrameHandle.gameFrame.setVisible(false);
                     }
                     GameFrameHandle.gameFrame.chessboard.squareComponents[i][j].setVisible(true);
-                    putChessOnBoard(GameFrameHandle.gameFrame.chessboard.squareComponents[i][j]);
+                    GameFrameHandle.gameFrame.chessboard.putChessOnBoard(GameFrameHandle.gameFrame.chessboard.squareComponents[i][j]);
                 }
             }
 
