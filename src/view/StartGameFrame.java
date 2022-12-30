@@ -128,6 +128,7 @@ public class StartGameFrame extends JFrame {
             } else {
                 GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
                 GameFrameHandle.gameFrame.gameController.loadGameFromFile(path);
+                GameFrameHandle.gameFrame.chessboard.setVisible(true);
             }
         });
     }
