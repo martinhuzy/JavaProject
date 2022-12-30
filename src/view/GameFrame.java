@@ -400,7 +400,7 @@ public class GameFrame extends JFrame{
     private void addRegretButton() {
         JButton button = new JButton("悔棋");
         button.addActionListener((e) -> {
-
+            GameFrameHandle.gameFrame.chessboard.withdraw();
         });
         button.setLocation(500, HEIGHT * 2 / 5);
         button.setSize(180, 60);

@@ -1,7 +1,5 @@
 package view;
 
-
-import ai.AI;
 import chessComponent.*;
 import media.MusicStuff2;
 import model.*;
@@ -36,6 +34,16 @@ public class Chessboard extends JComponent {
     public final ClickController clickController = new ClickController(this);
     private final int CHESS_SIZE;
     private ChessType[][] initialChess = new ChessType[8][4];
+    private int rememberChess1;
+    private int rememberChess2;
+    private ChessboardPoint rememberChess1Point;
+    private ChessboardPoint rememberChess2Point;
+    private Point rememberChess1Location;
+    private Point rememberChess2Location;
+    private boolean rememberChess1IsReversal;
+    private boolean rememberChess2IsReversal;
+
+    private int rr6,rr5,rr4,rr3,rr2,rr1,rr0,rb6,rb5,rb4,rb3,rb2,rb1,rb0;
 
 
     public Chessboard(int width, int height) {
@@ -82,6 +90,97 @@ public class Chessboard extends JComponent {
      * @param chess2
      */
     public void swapChessComponents(SquareComponent chess1, SquareComponent chess2) {
+        rememberChess1Point = chess1.getChessboardPoint();
+        rememberChess1Location = chess1.getLocation();
+        rememberChess1IsReversal = chess1.isReversal();
+        rememberChess2Point = chess2.getChessboardPoint();
+        rememberChess2Location = chess2.getLocation();
+        rememberChess2IsReversal = chess2.isReversal();
+        if (chess1.chessColor == ChessColor.BLACK) {
+            if (chess1 instanceof GeneralChessComponent) {
+                rememberChess1 = 0;
+            } else if (chess1 instanceof AdvisorChessComponent) {
+                rememberChess1 = 1;
+            } else if (chess1 instanceof MinisterChessComponent) {
+                rememberChess1 = 2;
+            } else if (chess1 instanceof ChariotChessComponent) {
+                rememberChess1 = 3;
+            } else if (chess1 instanceof HorseChessComponent) {
+                rememberChess1 = 4;
+            } else if (chess1 instanceof CannonChessComponent) {
+                rememberChess1 = 5;
+            } else if (chess1 instanceof SoldierChessComponent) {
+                rememberChess1 = 6;
+            }
+        } else if (chess1.chessColor == ChessColor.RED) {
+            if (chess1 instanceof GeneralChessComponent) {
+                rememberChess1 = 7;
+            } else if (chess1 instanceof AdvisorChessComponent) {
+                rememberChess1 = 8;
+            } else if (chess1 instanceof MinisterChessComponent) {
+                rememberChess1 = 9;
+            } else if (chess1 instanceof ChariotChessComponent) {
+                rememberChess1 = 10;
+            } else if (chess1 instanceof HorseChessComponent) {
+                rememberChess1 = 11;
+            } else if (chess1 instanceof CannonChessComponent) {
+                rememberChess1 = 12;
+            } else if (chess1 instanceof SoldierChessComponent) {
+                rememberChess1 = 13;
+            }
+        } else if (chess1 instanceof EmptySlotComponent) {
+            rememberChess1 = 14;
+        }
+        if (chess2.chessColor == ChessColor.BLACK) {
+            if (chess2 instanceof GeneralChessComponent) {
+                rememberChess2 = 0;
+            } else if (chess2 instanceof AdvisorChessComponent) {
+                rememberChess2 = 1;
+            } else if (chess1 instanceof MinisterChessComponent) {
+                rememberChess2 = 2;
+            } else if (chess1 instanceof ChariotChessComponent) {
+                rememberChess2 = 3;
+            } else if (chess1 instanceof HorseChessComponent) {
+                rememberChess2 = 4;
+            } else if (chess1 instanceof CannonChessComponent) {
+                rememberChess2 = 5;
+            } else if (chess1 instanceof SoldierChessComponent) {
+                rememberChess2 = 6;
+            }
+        } else if (chess1.chessColor == ChessColor.RED) {
+            if (chess2 instanceof GeneralChessComponent) {
+                rememberChess2 = 7;
+            } else if (chess1 instanceof AdvisorChessComponent) {
+                rememberChess2 = 8;
+            } else if (chess1 instanceof MinisterChessComponent) {
+                rememberChess2 = 9;
+            } else if (chess1 instanceof ChariotChessComponent) {
+                rememberChess2 = 10;
+            } else if (chess1 instanceof HorseChessComponent) {
+                rememberChess2 = 11;
+            } else if (chess1 instanceof CannonChessComponent) {
+                rememberChess2 = 12;
+            } else if (chess1 instanceof SoldierChessComponent) {
+                rememberChess2 = 13;
+            }
+        } else if (chess1 instanceof EmptySlotComponent) {
+            rememberChess2 = 14;
+        }
+        rr6 = GameFrameHandle.gameFrame.r6;
+        rr5 = GameFrameHandle.gameFrame.r5;
+        rr4 = GameFrameHandle.gameFrame.r4;
+        rr3 = GameFrameHandle.gameFrame.r3;
+        rr2 = GameFrameHandle.gameFrame.r2;
+        rr1 = GameFrameHandle.gameFrame.r1;
+        rr0 = GameFrameHandle.gameFrame.r0;
+        rb6 = GameFrameHandle.gameFrame.b6;
+        rb5 = GameFrameHandle.gameFrame.b5;
+        rb4 = GameFrameHandle.gameFrame.b4;
+        rb3 = GameFrameHandle.gameFrame.b3;
+        rb2 = GameFrameHandle.gameFrame.b2;
+        rb1 = GameFrameHandle.gameFrame.b1;
+        rb0 = GameFrameHandle.gameFrame.b0;
+
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
         if (!(chess2 instanceof EmptySlotComponent)) {
             if (chess2.getChessColor() == ChessColor.BLACK) {
@@ -261,8 +360,10 @@ public class Chessboard extends JComponent {
      * @param chessData
      */
     public void loadGame(List<String> chessData) {
+
         for (int i = 0; i < 8; i ++) {
             for (int j = 0; j < 4; j ++) {
+                GameFrameHandle.gameFrame.chessboard.squareComponents[i][j].setVisible(false);
                 GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = null;
             }
         }
@@ -274,7 +375,7 @@ public class Chessboard extends JComponent {
             GameFrameHandle.gameFrame.setVisible(false);
         } else {
             for (int i = 0; i < 17; i++) {
-                if (Objects.equals(chessData.get(16), "1")) {
+                if (chessData.get(16).equals("1")) {
                     GameFrame.getStatusLabel().setForeground(Color.RED);
                     GameFrame.getStatusLabel().setText(String.format("轮到红方"));
                     GameFrameHandle.gameFrame.chessboard.setCurrentColor(ChessColor.RED);
@@ -292,44 +393,45 @@ public class Chessboard extends JComponent {
             for (int i = 0; i < 8; i++) {
                 String[] s = chessData.get(i).split(" ");
                 for (int j = 0; j < 4; j++) {
+                    SquareComponent squareComponent = null;
                     if (Objects.equals(s[j], "G"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "A"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "M"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "C"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "H"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "N"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "S"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
+                        squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.RED, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "g"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new GeneralChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "a"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new AdvisorChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "m"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new MinisterChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "c"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new ChariotChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "h"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new HorseChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "n"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new CannonChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "s"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
+                        squareComponent = new SoldierChessComponent(new ChessboardPoint(i, j), calculatePoint(i, j), ChessColor.BLACK, clickController, CHESS_SIZE);
                     else if (Objects.equals(s[j], "0"))
-                        GameFrameHandle.gameFrame.chessboard.squareComponents[i][j] = new EmptySlotComponent(new ChessboardPoint(i, j), calculatePoint(i, j), clickController,  CHESS_SIZE);
+                        squareComponent = new EmptySlotComponent(new ChessboardPoint(i, j), calculatePoint(i, j), clickController,  CHESS_SIZE);
                     else {
                         StartGameFrame mainFrame = new StartGameFrame(720,720);
                         mainFrame.setVisible(true);
                         JOptionPane.showMessageDialog(mainFrame, "103", "Error", JOptionPane.INFORMATION_MESSAGE);
                         GameFrameHandle.gameFrame.setVisible(false);
                     }
-                    GameFrameHandle.gameFrame.chessboard.squareComponents[i][j].setVisible(true);
-                    GameFrameHandle.gameFrame.chessboard.putChessOnBoard(GameFrameHandle.gameFrame.chessboard.squareComponents[i][j]);
+                    squareComponent.setVisible(true);
+                    putChessOnBoard(squareComponent);
                 }
             }
 
@@ -356,7 +458,7 @@ public class Chessboard extends JComponent {
             GameFrameHandle.gameFrame.b1 = Integer.parseInt(s2[5]);
             GameFrameHandle.gameFrame.b0 = Integer.parseInt(s2[6]);
 
-
+            //GameFrameHandle.gameFrame.chessboard.setVisible(true);
             GameFrameHandle.gameFrame.repaint();
         }
     }
@@ -455,20 +557,161 @@ public class Chessboard extends JComponent {
     }
 
     public void checkWinner() {
-        if (redPoint >= 60) {
-            JOptionPane.showMessageDialog(this, "红方胜!");
-            GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
-            GameFrameHandle.gameFrame.setVisible(false);
-            StartGameFrame mainFrame = new StartGameFrame(720, 720);
-            mainFrame.setVisible(true);
-            setVisible(false);
-        } else if (blackPoint >= 60) {
+        if (GameFrameHandle.gameFrame.r6 * 30 + GameFrameHandle.gameFrame.r5 * 10 + (GameFrameHandle.gameFrame.r4 + GameFrameHandle.gameFrame.r3 + GameFrameHandle.gameFrame.r2 + GameFrameHandle.gameFrame.r1) * 5 + GameFrameHandle.gameFrame.r0 >= 60) {
             JOptionPane.showMessageDialog(this, "黑方胜!");
             GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
             GameFrameHandle.gameFrame.setVisible(false);
             StartGameFrame mainFrame = new StartGameFrame(720, 720);
             mainFrame.setVisible(true);
             setVisible(false);
+        } else if (GameFrameHandle.gameFrame.b6 * 30 + GameFrameHandle.gameFrame.b5 * 10 + (GameFrameHandle.gameFrame.b4 + GameFrameHandle.gameFrame.b3 + GameFrameHandle.gameFrame.b2 + GameFrameHandle.gameFrame.b1) * 5 + GameFrameHandle.gameFrame.b0 >= 60) {
+            JOptionPane.showMessageDialog(this, "红方胜!");
+            GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
+            GameFrameHandle.gameFrame.setVisible(false);
+            StartGameFrame mainFrame = new StartGameFrame(720, 720);
+            mainFrame.setVisible(true);
+            setVisible(false);
         }
+    }
+
+    public void withdraw() {
+        SquareComponent squareComponent;
+        if (rememberChess1 == 0) {
+            squareComponent = new GeneralChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 1) {
+            squareComponent = new AdvisorChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 2) {
+            squareComponent = new MinisterChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 3) {
+            squareComponent = new ChariotChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 4) {
+            squareComponent = new HorseChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 5) {
+            squareComponent = new CannonChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 6) {
+            squareComponent = new SoldierChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 7) {
+            squareComponent = new GeneralChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 8) {
+            squareComponent = new AdvisorChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 9) {
+            squareComponent = new MinisterChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 10) {
+            squareComponent = new ChariotChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 11) {
+            squareComponent = new HorseChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 12) {
+            squareComponent = new CannonChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 13) {
+            squareComponent = new SoldierChessComponent(rememberChess1Point,rememberChess1Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess1IsReversal);
+        } else if (rememberChess1 == 14) {
+            squareComponent = new EmptySlotComponent(rememberChess1Point, rememberChess1Location, clickController, CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+        }
+        if (rememberChess2 == 0) {
+            squareComponent = new GeneralChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 1) {
+            squareComponent = new AdvisorChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 2) {
+            squareComponent = new MinisterChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 3) {
+            squareComponent = new ChariotChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 4) {
+            squareComponent = new HorseChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 5) {
+            squareComponent = new CannonChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 6) {
+            squareComponent = new SoldierChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.BLACK,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 7) {
+            squareComponent = new GeneralChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 8) {
+            squareComponent = new AdvisorChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 9) {
+            squareComponent = new MinisterChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 10) {
+            squareComponent = new MinisterChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 11) {
+            squareComponent = new HorseChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 12) {
+            squareComponent = new CannonChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 13) {
+            squareComponent = new SoldierChessComponent(rememberChess2Point,rememberChess2Location,ChessColor.RED,clickController,CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+            squareComponent.setReversal(rememberChess2IsReversal);
+        } else if (rememberChess2 == 14) {
+            squareComponent = new EmptySlotComponent(rememberChess2Point, rememberChess2Location, clickController, CHESS_SIZE);
+            GameFrameHandle.gameFrame.chessboard.putChessOnBoard(squareComponent);
+        }
+        GameFrameHandle.gameFrame.r6 = rr6;
+        GameFrameHandle.gameFrame.r5 = rr5;
+        GameFrameHandle.gameFrame.r4 = rr4;
+        GameFrameHandle.gameFrame.r3 = rr3;
+        GameFrameHandle.gameFrame.r2 = rr2;
+        GameFrameHandle.gameFrame.r1 = rr1;
+        GameFrameHandle.gameFrame.r0 = rr0;
+        GameFrameHandle.gameFrame.b6 = rb6;
+        GameFrameHandle.gameFrame.b5 = rb5;
+        GameFrameHandle.gameFrame.b4 = rb4;
+        GameFrameHandle.gameFrame.b3 = rb3;
+        GameFrameHandle.gameFrame.b2 = rb2;
+        GameFrameHandle.gameFrame.b1 = rb1;
+        GameFrameHandle.gameFrame.b0 = rb0;
+        clickController.swapPlayer();
+        GameFrameHandle.gameFrame.repaint();
+
     }
 }
