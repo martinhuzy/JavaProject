@@ -10,6 +10,7 @@ public class Account {
     private ChangeAccountFrame changeAccountFrame;
     public static List<String> accounts= new ArrayList<>();
     public static List<String> roots = new ArrayList<>();
+    public static String now;
 
 //    public void addAccount() {
 //        String account = "aa";

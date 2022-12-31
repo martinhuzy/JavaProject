@@ -115,7 +115,14 @@ public class ChangeAccountFrame extends JFrame{
                     Object[] options = {"确认", "取消"};
             int m = JOptionPane.showOptionDialog(null,"确认要删除账户吗？","提示",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             if (m == JOptionPane.YES_OPTION) {
-
+                for(int i = 0; i < Account.accounts.size(); i ++) {
+                    if(Account.accounts.get(i).equals(Account.now)) {
+                        Account.accounts.remove(i);
+                        break;
+                    }
+                }
+//                String test = (Account.accounts.get(0));
+//                test = test.replace("1"," ");
             }
         });
         button.setLocation(WIDTH / 2 - 90, 240);

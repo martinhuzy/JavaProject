@@ -93,11 +93,12 @@ public class Creat {
         public void actionPerformed(ActionEvent e) {
             Register.reShow();
         }
+
     }
 
     public class LoginListener implements ActionListener {
-        private javax.swing.JTextField jt;//账号输入框对象
-        private javax.swing.JPasswordField jp;//密码输入框对象
+        public javax.swing.JTextField jt;//账号输入框对象
+        public javax.swing.JPasswordField jp;//密码输入框对象
         private javax.swing.JFrame login;//定义一个窗体对象
 
         public LoginListener(javax.swing.JFrame login, javax.swing.JTextField jt, javax.swing.JPasswordField jp) {
@@ -105,6 +106,7 @@ public class Creat {
             this.jt = jt;//获取登录界面中的账号输入框对象
             this.jp = jp;//获取登录界面中的密码输入框对象
         }
+
 
         //Account.accounts.add(String.valueOf(jt));
         //Account.roots.add(String.valueOf(jp));
@@ -119,8 +121,9 @@ public class Creat {
                     JOptionPane.showMessageDialog(null, "登陆成功", "成功", JOptionPane.INFORMATION_MESSAGE);
                     Login.createShow();
                     login.setVisible(false);
+                    Account.now = jt.getText();
                 } else if (!(jt.getText().equals(Account.accounts.get(0)) && Account.roots.get(0).equals(myPass))
-                        && (!jt.getText().equals(Account.accounts.get(Account.accounts.size()-1)) && Account.roots.get(Account.roots.size()-1).equals(myPass))) {
+                        && (!(jt.getText().equals(Account.accounts.get(Account.accounts.size()-1)) && Account.roots.get(Account.roots.size()-1).equals(myPass)))) {
                     {
                         JOptionPane.showMessageDialog(null, "登录名或密码错误", "失败", JOptionPane.ERROR_MESSAGE);
                     }
