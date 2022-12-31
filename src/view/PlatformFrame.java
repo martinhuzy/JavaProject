@@ -87,8 +87,13 @@ public class PlatformFrame extends JFrame {
     }
     private void addRankButton() {
         JButton button = new JButton("本地玩家排行榜");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "敬请期待！"));
-        button.setLocation(WIDTH / 10, HEIGHT / 10 + 280);
+        button.addActionListener((e) -> {
+            SwingUtilities.invokeLater(() -> {
+                RankingFrame mainFrame = new RankingFrame(720, 720);
+                mainFrame.setVisible(true);
+                setVisible(false);
+            });
+        }); button.setLocation(WIDTH / 10, HEIGHT / 10 + 280);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         ImageIcon image = new ImageIcon(".\\resource\\29.png");
@@ -111,8 +116,27 @@ public class PlatformFrame extends JFrame {
                 backGroundMusic.endMusic();
             }
             if(m == JOptionPane.CANCEL_OPTION){
-                JOptionPane.showInputDialog(this, "请输入音量大小(0-100)");
-                    
+                String s = JOptionPane.showInputDialog(this, "请输入音量大小(0-100)");
+
+                try {
+                    File file = new File("./resource/项斯华 - 高山流水 (古筝独奏).wav");
+                    Clip clip;
+                    if (file.exists()) {
+                        AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
+                        clip = AudioSystem.getClip();
+                        clip.open(audioInput);
+                        clip.start();
+                        clip.loop(Clip.LOOP_CONTINUOUSLY);
+                        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                        // value可以用来设置音量，从0-100.0
+                        double value = Double.parseDouble(s);
+                        float dB = (float) (Math.log(value == 0.0 ? 0.0001 : value) / Math.log(10.0) * 20.0 / 50.0);
+                        volume.setValue(dB);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
             }
 
         });

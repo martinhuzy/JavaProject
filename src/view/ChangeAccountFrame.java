@@ -111,9 +111,13 @@ public class ChangeAccountFrame extends JFrame{
 //    }
     private void addDeleteAccountButton() {
         JButton button = new JButton("删除账户");
-        button.addActionListener((e) ->
-                JOptionPane.showMessageDialog(this, "敬请期待！")
-        );
+        button.addActionListener((e) -> {
+                    Object[] options = {"确认", "取消"};
+            int m = JOptionPane.showOptionDialog(null,"确认要删除账户吗？","提示",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (m == JOptionPane.YES_OPTION) {
+
+            }
+        });
         button.setLocation(WIDTH / 2 - 90, 240);
         button.setSize(180, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -132,7 +136,11 @@ public class ChangeAccountFrame extends JFrame{
     private void addResetButton() {
         JButton button = new JButton("重置账户");
         button.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "敬请期待！");
+            Object[] options = {"确认", "取消"};
+            int m = JOptionPane.showOptionDialog(null,"确认要重置账户吗？","提示",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (m == JOptionPane.YES_OPTION) {
+                //将分数扣光？
+            }
         });
         button.setLocation(WIDTH / 2 - 90, 380);
         button.setSize(180, 60);

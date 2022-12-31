@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 
 public class Creat {
@@ -31,14 +32,14 @@ public class Creat {
 
         //创建JLabel(用户名)
         JLabel user_label = new JLabel("用户名:");
-        user_label.setFont(new Font("微软雅黑", 0, 13));
+        user_label.setFont(new Font("微软雅黑", Font.PLAIN, 13));
         //定义组件的位置和宽高
         user_label.setBounds(10, 20, 80, 25);
         //把组件添加到JPanel上
         jPanel.add(user_label);
 
         //创建文本域用于用户输入
-        JTextField user_text = new JTextField(20);
+        JTextField user_text = new JTextField();
         //设置文本域的位置和宽高
         user_text.setBounds(100, 20, 165, 25);
         //把文本域组件添加上
@@ -98,6 +99,7 @@ public class Creat {
         private javax.swing.JTextField jt;//账号输入框对象
         private javax.swing.JPasswordField jp;//密码输入框对象
         private javax.swing.JFrame login;//定义一个窗体对象
+
         public LoginListener(javax.swing.JFrame login, javax.swing.JTextField jt, javax.swing.JPasswordField jp) {
             this.login = login;//获取登录界面
             this.jt = jt;//获取登录界面中的账号输入框对象
@@ -109,19 +111,22 @@ public class Creat {
 
         public void actionPerformed(ActionEvent e) {
             //用户名密码判断
-//            for (int i = 0; i < Account.accounts.size(); i++) {
-                if (jt.getText().equals("123") && jp.getText().equals("123")) {
-                    //设置弹框
+            for (int i = 0; i < Account.accounts.size(); i++) {
+                //String myPass=String.valueOf(Account.roots.get(i));'
+                String myPass = String.valueOf(jp.getPassword());
+                if (jt.getText().equals(Account.accounts.get(i)) && Account.roots.get(i).equals(myPass)) {
+                    //if (jt.getText().equals("12") && Arrays.equals(jp.getPassword(), "12".toCharArray())) {
                     JOptionPane.showMessageDialog(null, "登陆成功", "成功", JOptionPane.INFORMATION_MESSAGE);
-                    //Login.createShow();
+                    Login.createShow();
                     login.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "登录名或密码错误", "失败", JOptionPane.ERROR_MESSAGE);
                 }
-
             }
+
+           // }
 
         }
     }
-
+}
 
