@@ -109,15 +109,16 @@ public class PlatformFrame extends JFrame {
             int m = JOptionPane.showOptionDialog(null,"调整背景音乐","音乐",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             String filepath = "./resource/项斯华 - 高山流水 (古筝独奏).wav";
             MusicStuff1 backGroundMusic = new MusicStuff1();
+
             if (m == JOptionPane.YES_OPTION) {
                 backGroundMusic.playMusic(filepath);
             }
             if(m == JOptionPane.NO_OPTION) {
                 backGroundMusic.endMusic();
+
             }
             if(m == JOptionPane.CANCEL_OPTION){
                 String s = JOptionPane.showInputDialog(this, "请输入音量大小(0-100)");
-
                 try {
                     File file = new File("./resource/项斯华 - 高山流水 (古筝独奏).wav");
                     Clip clip;
@@ -130,7 +131,7 @@ public class PlatformFrame extends JFrame {
                         FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                         // value可以用来设置音量，从0-100.0
                         double value = Double.parseDouble(s);
-                        float dB = (float) (Math.log(value == 0.0 ? 0.0001 : value) / Math.log(10.0) * 20.0 / 50.0);
+                        float dB = (float) (-40.0 *  (1 - value / 100));
                         volume.setValue(dB);
                     }
                 } catch (Exception ex) {

@@ -119,13 +119,16 @@ public class Creat {
                     JOptionPane.showMessageDialog(null, "登陆成功", "成功", JOptionPane.INFORMATION_MESSAGE);
                     Login.createShow();
                     login.setVisible(false);
-                } else {
-                    JOptionPane.showMessageDialog(null, "登录名或密码错误", "失败", JOptionPane.ERROR_MESSAGE);
+                } else if (!(jt.getText().equals(Account.accounts.get(0)) && Account.roots.get(0).equals(myPass))
+                        && (!jt.getText().equals(Account.accounts.get(Account.accounts.size()-1)) && Account.roots.get(Account.roots.size()-1).equals(myPass))) {
+                    {
+                        JOptionPane.showMessageDialog(null, "登录名或密码错误", "失败", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
+
+                // }
+
             }
-
-           // }
-
         }
     }
 }
