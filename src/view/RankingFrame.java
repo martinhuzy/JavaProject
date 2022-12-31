@@ -1,5 +1,6 @@
 package view;
 
+import accounts.Account;
 import controller.GameController;
 
 import javax.swing.*;
@@ -72,6 +73,12 @@ public class RankingFrame extends JFrame {
         rankingTitle.setBounds(500,209,500,100);
         rankingTitle.setVisible(true);
         add(rankingTitle);
+    }
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setFont(new Font("宋体", Font.BOLD, 40));
+        g.drawString(Account.now, 330, 375);
+        g.drawString(String.format(String.valueOf(Chessboard.score)),550,375);
     }
     private void addBackButton() {
         JButton button = new JButton("返回主菜单");

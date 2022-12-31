@@ -21,6 +21,7 @@ import java.util.List;
 public class Chessboard extends JComponent {
     int redPoint = 0;
     int blackPoint = 0;
+    public static int score = 0;
 
 
     private static final int ROW_SIZE = 8;
@@ -559,6 +560,7 @@ public class Chessboard extends JComponent {
     public void checkWinner() {
         if (GameFrameHandle.gameFrame.r6 * 30 + GameFrameHandle.gameFrame.r5 * 10 + (GameFrameHandle.gameFrame.r4 + GameFrameHandle.gameFrame.r3 + GameFrameHandle.gameFrame.r2 + GameFrameHandle.gameFrame.r1) * 5 + GameFrameHandle.gameFrame.r0 >= 60) {
             JOptionPane.showMessageDialog(this, "黑方胜!");
+            score += 1;
             GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
             GameFrameHandle.gameFrame.setVisible(false);
             StartGameFrame mainFrame = new StartGameFrame(720, 720);
@@ -566,6 +568,7 @@ public class Chessboard extends JComponent {
             setVisible(false);
         } else if (GameFrameHandle.gameFrame.b6 * 30 + GameFrameHandle.gameFrame.b5 * 10 + (GameFrameHandle.gameFrame.b4 + GameFrameHandle.gameFrame.b3 + GameFrameHandle.gameFrame.b2 + GameFrameHandle.gameFrame.b1) * 5 + GameFrameHandle.gameFrame.b0 >= 60) {
             JOptionPane.showMessageDialog(this, "红方胜!");
+            score += 1;
             GameFrameHandle.gameFrame = new GameFrame(WIDTH,HEIGHT);
             GameFrameHandle.gameFrame.setVisible(false);
             StartGameFrame mainFrame = new StartGameFrame(720, 720);

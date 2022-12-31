@@ -119,7 +119,7 @@ public class Creat {
                 if (jt.getText().equals(Account.accounts.get(i)) && Account.roots.get(i).equals(myPass)) {
                     //if (jt.getText().equals("12") && Arrays.equals(jp.getPassword(), "12".toCharArray())) {
                     JOptionPane.showMessageDialog(null, "登陆成功", "成功", JOptionPane.INFORMATION_MESSAGE);
-                    Login.createShow();
+//                    Login.createShow();
                     login.setVisible(false);
                     Account.now = jt.getText();
                 } else if (!(jt.getText().equals(Account.accounts.get(0)) && Account.roots.get(0).equals(myPass))
